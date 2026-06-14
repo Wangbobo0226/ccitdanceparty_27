@@ -2,11 +2,10 @@
 <html lang="zh-TW">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>王冠之宴｜第27屆風嶺舞會</title>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600;700&family=Noto+Serif+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
   <style>
-    /* ── TOKENS ── */
     :root {
       --gold:          #c9a84c;
       --gold-light:    #f0d080;
@@ -24,870 +23,705 @@
       --border-hover:  rgba(201,168,76,0.45);
       --transition:    0.38s cubic-bezier(0.4,0,0.2,1);
     }
-
-    *, *::before, *::after { 
-      margin: 0; 
-      padding: 0; 
-      box-sizing: border-box; 
-    }
-    
-    html, body { 
-      height: 100%; 
-      overflow: hidden; 
-    }
-
-    body {
-      font-family: 'Noto Serif TC', serif;
-      background: var(--deep);
-      color: var(--parchment);
-      display: flex;
-    }
-
-    /* ── NOISE OVERLAY ── */
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html, body { height:100%; overflow:hidden; }
+    body { font-family:'Noto Serif TC',serif; background:var(--deep); color:var(--parchment); display:flex; }
     body::after {
-      content: '';
-      position: fixed; 
-      inset: 0;
-      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
-      pointer-events: none; 
-      z-index: 999;
+      content:''; position:fixed; inset:0;
+      background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events:none; z-index:999;
     }
 
-    /* ════════════════════════════
-       SIDEBAR
-    ════════════════════════════ */
+    /* ═══ SIDEBAR ═══ */
     #sidebar {
-      width: var(--sidebar-w);
-      height: 100vh;
-      flex-shrink: 0;
-      background: var(--panel);
-      border-right: 1px solid var(--border);
-      display: flex;
-      flex-direction: column;
-      position: relative;
-      z-index: 50;
-      overflow: hidden;
+      width:var(--sidebar-w); height:100vh; flex-shrink:0;
+      background:var(--panel); border-right:1px solid var(--border);
+      display:flex; flex-direction:column; position:relative; z-index:50; overflow:hidden;
     }
-
-    /* stone-like column lines */
     #sidebar::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 30px; bottom: 0;
-      width: 1px;
-      background: linear-gradient(to bottom, transparent, rgba(201,168,76,0.06) 20%, rgba(201,168,76,0.06) 80%, transparent);
-      pointer-events: none;
+      content:''; position:absolute; top:0; left:30px; bottom:0; width:1px;
+      background:linear-gradient(to bottom,transparent,rgba(201,168,76,0.06) 20%,rgba(201,168,76,0.06) 80%,transparent);
+      pointer-events:none;
     }
-    
     #sidebar::after {
-      content: '';
-      position: absolute;
-      top: 0; right: 30px; bottom: 0;
-      width: 1px;
-      background: linear-gradient(to bottom, transparent, rgba(201,168,76,0.04) 20%, rgba(201,168,76,0.04) 80%, transparent);
-      pointer-events: none;
+      content:''; position:absolute; top:0; right:30px; bottom:0; width:1px;
+      background:linear-gradient(to bottom,transparent,rgba(201,168,76,0.04) 20%,rgba(201,168,76,0.04) 80%,transparent);
+      pointer-events:none;
     }
-
-    /* brand block */
-    .sidebar-brand {
-      padding: 2.4rem 2rem 2rem;
-      border-bottom: 1px solid var(--border);
-      text-align: center;
-    }
-
-    .sidebar-crown {
-      font-size: 1.8rem;
-      line-height: 1;
-      margin-bottom: 0.8rem;
-      display: block;
-      filter: drop-shadow(0 0 8px rgba(201,168,76,0.5));
-    }
-
+    .sidebar-brand { padding:2.4rem 2rem 2rem; border-bottom:1px solid var(--border); text-align:center; }
+    .sidebar-crown { font-size:1.8rem; line-height:1; margin-bottom:0.8rem; display:block; filter:drop-shadow(0 0 8px rgba(201,168,76,0.5)); }
     .sidebar-title {
-      font-family: 'Cinzel Decorative', serif;
-      font-size: 1.05rem;
-      font-weight: 700;
-      background: linear-gradient(135deg, var(--gold-dim), var(--gold-light), var(--gold));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      line-height: 1.3;
-      margin-bottom: 0.4rem;
+      font-family:'Cinzel Decorative',serif; font-size:1.05rem; font-weight:700;
+      background:linear-gradient(135deg,var(--gold-dim),var(--gold-light),var(--gold));
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+      line-height:1.3; margin-bottom:0.4rem;
     }
-
-    .sidebar-edition {
-      font-family: 'Cinzel', serif;
-      font-size: 0.6rem;
-      letter-spacing: 0.35em;
-      color: var(--gold-dim);
-      text-transform: uppercase;
-    }
-
-    /* nav links */
-    .sidebar-nav {
-      flex: 1;
-      padding: 1.5rem 0;
-      list-style: none;
-      overflow-y: auto;
-    }
-
-    .sidebar-nav::-webkit-scrollbar { width: 0; }
-
-    .nav-item {
-      position: relative;
-    }
-
+    .sidebar-edition { font-family:'Cinzel',serif; font-size:0.6rem; letter-spacing:0.35em; color:var(--gold-dim); text-transform:uppercase; }
+    .sidebar-nav { flex:1; padding:1.5rem 0; list-style:none; overflow-y:auto; }
+    .sidebar-nav::-webkit-scrollbar { width:0; }
+    .nav-item { position:relative; }
     .nav-link {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      padding: 0.9rem 2rem;
-      cursor: pointer;
-      text-decoration: none;
-      border-left: 3px solid transparent;
-      transition: all var(--transition);
+      display:flex; align-items:center; gap:1rem; padding:0.9rem 2rem;
+      cursor:pointer; text-decoration:none; border-left:3px solid transparent; transition:all var(--transition);
     }
+    .nav-link:hover { background:var(--gold-faint); border-left-color:var(--gold-dim); }
+    .nav-link.active { background:rgba(201,168,76,0.09); border-left-color:var(--gold); }
+    .nav-icon { font-size:1rem; width:1.4rem; text-align:center; flex-shrink:0; transition:transform var(--transition); }
+    .nav-link:hover .nav-icon, .nav-link.active .nav-icon { transform:scale(1.15); }
+    .nav-label { font-family:'Cinzel',serif; font-size:0.72rem; letter-spacing:0.2em; color:var(--parchment-dim); text-transform:uppercase; transition:color var(--transition); }
+    .nav-link:hover .nav-label, .nav-link.active .nav-label { color:var(--gold); }
+    .nav-link.active::after { content:''; position:absolute; right:1.5rem; top:50%; transform:translateY(-50%) rotate(45deg); width:5px; height:5px; background:var(--gold); }
+    .nav-divider { height:1px; background:var(--border); margin:0.8rem 2rem; }
+    .sidebar-footer { padding:1.2rem 2rem; border-top:1px solid var(--border); text-align:center; }
+    .sidebar-footer p { font-family:'Cinzel',serif; font-size:0.55rem; letter-spacing:0.25em; color:rgba(201,168,76,0.3); line-height:1.8; text-transform:uppercase; }
 
-    .nav-link:hover {
-      background: var(--gold-faint);
-      border-left-color: var(--gold-dim);
-    }
-
-    .nav-link.active {
-      background: rgba(201,168,76,0.09);
-      border-left-color: var(--gold);
-    }
-
-    .nav-icon {
-      font-size: 1rem;
-      width: 1.4rem;
-      text-align: center;
-      flex-shrink: 0;
-      transition: transform var(--transition);
-    }
-
-    .nav-link:hover .nav-icon,
-    .nav-link.active .nav-icon {
-      transform: scale(1.15);
-    }
-
-    .nav-label {
-      font-family: 'Cinzel', serif;
-      font-size: 0.72rem;
-      letter-spacing: 0.2em;
-      color: var(--parchment-dim);
-      text-transform: uppercase;
-      transition: color var(--transition);
-    }
-
-    .nav-link:hover .nav-label,
-    .nav-link.active .nav-label {
-      color: var(--gold);
-    }
-
-    /* active indicator dot */
-    .nav-link.active::after {
-      content: '';
-      position: absolute;
-      right: 1.5rem;
-      top: 50%;
-      transform: translateY(-50%) rotate(45deg);
-      width: 5px;
-      height: 5px;
-      background: var(--gold);
-    }
-
-    /* divider in nav */
-    .nav-divider {
-      height: 1px;
-      background: var(--border);
-      margin: 0.8rem 2rem;
-    }
-
-    /* sidebar footer */
-    .sidebar-footer {
-      padding: 1.2rem 2rem;
-      border-top: 1px solid var(--border);
-      text-align: center;
-    }
-
-    .sidebar-footer p {
-      font-family: 'Cinzel', serif;
-      font-size: 0.55rem;
-      letter-spacing: 0.25em;
-      color: rgba(201,168,76,0.3);
-      line-height: 1.8;
-      text-transform: uppercase;
-    }
-
-    /* ════════════════════════════
-       MAIN CONTENT AREA
-    ════════════════════════════ */
-    #main {
-      flex: 1;
-      height: 100vh;
-      overflow: hidden;
-      position: relative;
-    }
-
-    /* ── PAGE SYSTEM ── */
+    /* ═══ MAIN ═══ */
+    #main { flex:1; height:100vh; overflow:hidden; position:relative; }
     .page {
-      position: absolute;
-      inset: 0;
-      overflow-y: auto;
-      overflow-x: hidden;
-      opacity: 0;
-      transform: translateX(24px);
-      pointer-events: none;
-      transition: opacity var(--transition), transform var(--transition);
-      scrollbar-width: thin;
-      scrollbar-color: var(--gold-dim) transparent;
+      position:absolute; inset:0; overflow-y:auto; overflow-x:hidden;
+      opacity:0; transform:translateX(24px); pointer-events:none;
+      transition:opacity var(--transition),transform var(--transition);
+      scrollbar-width:thin; scrollbar-color:var(--gold-dim) transparent;
     }
+    .page::-webkit-scrollbar { width:4px; }
+    .page::-webkit-scrollbar-track { background:transparent; }
+    .page::-webkit-scrollbar-thumb { background:var(--gold-dim); border-radius:2px; }
+    .page.active { opacity:1; transform:translateX(0); pointer-events:all; }
+    .page-inner { padding:4rem 5rem; max-width:900px; margin:0 auto; }
 
-    .page::-webkit-scrollbar { width: 4px; }
-    .page::-webkit-scrollbar-track { background: transparent; }
-    .page::-webkit-scrollbar-thumb { background: var(--gold-dim); border-radius: 2px; }
-
-    .page.active {
-      opacity: 1;
-      transform: translateX(0);
-      pointer-events: all;
-    }
-
-    .page-inner {
-      min-height: 100vh;
-      padding: 4rem 5rem;
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
-    /* ── SHARED SECTION ELEMENTS ── */
-    .page-eyebrow {
-      font-family: 'Cinzel', serif;
-      font-size: 0.65rem;
-      letter-spacing: 0.55em;
-      color: var(--gold-dim);
-      text-transform: uppercase;
-      margin-bottom: 0.9rem;
-    }
-
+    /* ═══ SHARED ELEMENTS ═══ */
+    .page-eyebrow { font-family:'Cinzel',serif; font-size:0.65rem; letter-spacing:0.55em; color:var(--gold-dim); text-transform:uppercase; margin-bottom:0.9rem; }
     .page-title {
-      font-family: 'Cinzel Decorative', serif;
-      font-size: clamp(2rem, 4vw, 3.2rem);
-      font-weight: 700;
-      background: linear-gradient(135deg, var(--gold-dim) 0%, var(--gold-light) 45%, var(--gold) 70%, var(--gold-dim) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      margin-bottom: 1rem;
-      line-height: 1.15;
+      font-family:'Cinzel Decorative',serif; font-size:clamp(2rem,4vw,3.2rem); font-weight:700;
+      background:linear-gradient(135deg,var(--gold-dim) 0%,var(--gold-light) 45%,var(--gold) 70%,var(--gold-dim) 100%);
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+      margin-bottom:1rem; line-height:1.15;
     }
-
-    .page-ornament {
-      display: flex;
-      align-items: center;
-      gap: 0.9rem;
-      margin-bottom: 3.5rem;
-    }
-    
-    .orn-line { height: 1px; width: 60px; background: linear-gradient(to right, var(--gold-dim), transparent); }
-    .orn-line.r { background: linear-gradient(to left, var(--gold-dim), transparent); }
-    .orn-diamond { width: 5px; height: 5px; background: var(--gold-dim); transform: rotate(45deg); flex-shrink: 0; }
-
-    /* ── CARD ── */
+    .page-ornament { display:flex; align-items:center; gap:0.9rem; margin-bottom:3rem; }
+    .orn-line { height:1px; width:60px; background:linear-gradient(to right,var(--gold-dim),transparent); }
+    .orn-line.r { background:linear-gradient(to left,var(--gold-dim),transparent); }
+    .orn-diamond { width:5px; height:5px; background:var(--gold-dim); transform:rotate(45deg); flex-shrink:0; }
     .card {
-      background: rgba(201,168,76,0.04);
-      border: 1px solid var(--border);
-      position: relative;
-      transition: border-color 0.3s, background 0.3s;
+      background:rgba(201,168,76,0.04); border:1px solid var(--border); position:relative;
+      transition:border-color 0.3s,background 0.3s,transform 0.3s,box-shadow 0.3s;
     }
-    
-    .card:hover { border-color: var(--border-hover); background: rgba(201,168,76,0.07); }
-    .card::before { content: ''; position: absolute; top: -1px; left: -1px; width: 12px; height: 12px; border-top: 1px solid var(--gold-dim); border-left: 1px solid var(--gold-dim); }
-    .card::after  { content: ''; position: absolute; bottom: -1px; right: -1px; width: 12px; height: 12px; border-bottom: 1px solid var(--gold-dim); border-right: 1px solid var(--gold-dim); }
+    .card:hover { border-color:var(--border-hover); background:rgba(201,168,76,0.07); }
+    .card::before { content:''; position:absolute; top:-1px; left:-1px; width:12px; height:12px; border-top:1px solid var(--gold-dim); border-left:1px solid var(--gold-dim); }
+    .card::after  { content:''; position:absolute; bottom:-1px; right:-1px; width:12px; height:12px; border-bottom:1px solid var(--gold-dim); border-right:1px solid var(--gold-dim); }
 
-    /* ════════════════════════════
+    /* scroll reveal */
+    .reveal { opacity:0; transform:translateY(28px); transition:opacity 0.65s ease,transform 0.65s ease; }
+    .reveal.vis { opacity:1; transform:translateY(0); }
+    .reveal-left { opacity:0; transform:translateX(-28px); transition:opacity 0.65s ease,transform 0.65s ease; }
+    .reveal-left.vis { opacity:1; transform:translateX(0); }
+    .reveal-right { opacity:0; transform:translateX(28px); transition:opacity 0.65s ease,transform 0.65s ease; }
+    .reveal-right.vis { opacity:1; transform:translateX(0); }
+
+    /* ═══════════════════════════════
        PAGE: HOME
-    ════════════════════════════ */
+    ═══════════════════════════════ */
     #page-home {
       background:
-        radial-gradient(ellipse at 70% 20%, rgba(139,26,26,0.07) 0%, transparent 55%),
-        radial-gradient(ellipse at 20% 80%, rgba(201,168,76,0.05) 0%, transparent 50%),
+        radial-gradient(ellipse at 65% 20%, rgba(139,26,26,0.1) 0%, transparent 55%),
+        radial-gradient(ellipse at 15% 80%, rgba(201,168,76,0.06) 0%, transparent 50%),
         var(--deep);
+      overflow:hidden;
+    }
+
+    /* ── 星空 canvas ── */
+    #star-canvas {
+      position:absolute; inset:0; z-index:0; pointer-events:none;
+      width:100%; height:100%;
+    }
+
+    /* 滑鼠光暈 */
+    #home-glow {
+      position:absolute; width:500px; height:500px; border-radius:50%;
+      background:radial-gradient(circle,rgba(201,168,76,0.055) 0%,transparent 65%);
+      pointer-events:none; z-index:1;
+      transform:translate(-50%,-50%);
+      transition:left 0.12s ease-out,top 0.12s ease-out,opacity 0.5s;
+      opacity:0;
     }
 
     .home-inner {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 4rem 5rem;
-      max-width: 860px;
-      margin: 0 auto;
+      position:relative; z-index:2;
+      /* 修正手機被切到：dvh 正確計算扣除瀏覽器 UI 的高度 */
+      min-height:100dvh;
+      display:flex; flex-direction:column; justify-content:center;
+      padding:4rem 5rem;
+      padding-bottom:max(4rem, env(safe-area-inset-bottom, 1.5rem));
+      max-width:860px; margin:0 auto;
     }
 
-    .home-rings {
-      position: absolute;
-      top: 50%; right: -100px;
-      transform: translateY(-50%);
-      pointer-events: none;
-    }
-    
-    .ring {
-      position: absolute;
-      border-radius: 50%;
-      border: 1px solid rgba(201,168,76,0.05);
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-    }
-    
-    .ring:nth-child(1) { width: 300px; height: 300px; }
-    .ring:nth-child(2) { width: 480px; height: 480px; border-color: rgba(201,168,76,0.03); }
-    .ring:nth-child(3) { width: 640px; height: 640px; border-color: rgba(201,168,76,0.02); }
-
-    .home-label {
-      font-family: 'Cinzel', serif;
-      font-size: 0.68rem;
-      letter-spacing: 0.5em;
-      color: var(--gold-dim);
-      text-transform: uppercase;
-      margin-bottom: 1.4rem;
-      animation: fadeUp 0.8s ease both;
-    }
-
-    .home-divider {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      margin-bottom: 1.4rem;
-      animation: fadeUp 0.8s ease 0.1s both;
-    }
-    
-    .home-divider-line { height: 1px; width: 70px; background: linear-gradient(to right, transparent, var(--gold-dim)); }
-    .home-divider-line.r { background: linear-gradient(to left, transparent, var(--gold-dim)); }
-
+    .home-label { font-family:'Cinzel',serif; font-size:0.68rem; letter-spacing:0.5em; color:var(--gold-dim); text-transform:uppercase; margin-bottom:1.4rem; animation:fadeUp 0.8s ease both; }
+    .home-divider { display:flex; align-items:center; gap:1rem; margin-bottom:1.4rem; animation:fadeUp 0.8s ease 0.1s both; }
+    .home-divider-line { height:1px; width:70px; background:linear-gradient(to right,transparent,var(--gold-dim)); }
+    .home-divider-line.r { background:linear-gradient(to left,transparent,var(--gold-dim)); }
     .home-title {
-      font-family: 'Cinzel Decorative', serif;
-      font-size: clamp(3rem, 6vw, 5.5rem);
-      font-weight: 900;
-      background: linear-gradient(135deg, var(--gold-dim) 0%, var(--gold-light) 40%, var(--gold) 65%, var(--gold-dim) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      line-height: 1.05;
-      margin-bottom: 1rem;
-      animation: fadeUp 0.9s ease 0.15s both;
+      font-family:'Cinzel Decorative',serif; font-size:clamp(3rem,6vw,5.5rem); font-weight:900;
+      background:linear-gradient(135deg,var(--gold-dim) 0%,var(--gold-light) 40%,var(--gold) 65%,var(--gold-dim) 100%);
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+      line-height:1.05; margin-bottom:0.6rem; animation:fadeUp 0.9s ease 0.15s both;
     }
+    .home-sub { font-family:'Noto Serif TC',serif; font-size:0.9rem; letter-spacing:0.45em; color:var(--parchment-dim); margin-bottom:2.5rem; animation:fadeUp 0.9s ease 0.25s both; }
+    .home-meta { display:flex; gap:3rem; margin-bottom:2.5rem; animation:fadeUp 0.9s ease 0.35s both; }
+    .home-meta-label { font-family:'Cinzel',serif; font-size:0.58rem; letter-spacing:0.4em; color:var(--gold-dim); text-transform:uppercase; margin-bottom:0.4rem; }
+    .home-meta-value { font-family:'Cinzel',serif; font-size:0.9rem; color:var(--parchment); letter-spacing:0.1em; }
+    .home-cta { display:flex; gap:1.2rem; margin-bottom:3rem; animation:fadeUp 0.9s ease 0.45s both; }
 
-    .home-sub {
-      font-family: 'Noto Serif TC', serif;
-      font-size: 0.9rem;
-      letter-spacing: 0.45em;
-      color: var(--parchment-dim);
-      margin-bottom: 2.8rem;
-      animation: fadeUp 0.9s ease 0.25s both;
+    /* countdown */
+    .home-countdown { animation:fadeUp 0.9s ease 0.55s both; }
+    .countdown-label { font-family:'Cinzel',serif; font-size:0.6rem; letter-spacing:0.45em; color:var(--gold-dim); text-transform:uppercase; margin-bottom:0.9rem; }
+    .countdown-blocks { display:flex; gap:1.2rem; }
+    .cd-block { text-align:center; }
+    .cd-num {
+      font-family:'Cinzel Decorative',serif; font-size:2rem; font-weight:700; line-height:1;
+      background:linear-gradient(135deg,var(--gold-dim),var(--gold-light));
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+      display:block; min-width:3rem;
     }
+    .cd-unit { font-family:'Cinzel',serif; font-size:0.55rem; letter-spacing:0.3em; color:var(--gold-dim); text-transform:uppercase; margin-top:0.25rem; display:block; }
 
-    .home-meta {
-      display: flex;
-      gap: 3rem;
-      margin-bottom: 3.5rem;
-      animation: fadeUp 0.9s ease 0.35s both;
-    }
-
-    .home-meta-label {
-      font-family: 'Cinzel', serif;
-      font-size: 0.58rem;
-      letter-spacing: 0.4em;
-      color: var(--gold-dim);
-      text-transform: uppercase;
-      margin-bottom: 0.4rem;
-    }
-    
-    .home-meta-value {
-      font-family: 'Cinzel', serif;
-      font-size: 0.9rem;
-      color: var(--parchment);
-      letter-spacing: 0.1em;
-    }
-
-    .home-cta {
-      display: flex;
-      gap: 1.2rem;
-      animation: fadeUp 0.9s ease 0.45s both;
-    }
-
+    /* buttons */
     .btn-gold {
-      font-family: 'Cinzel', serif;
-      font-size: 0.72rem;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-      color: var(--ink);
-      background: linear-gradient(135deg, var(--gold-dim), var(--gold-light));
-      border: none;
-      padding: 0.85rem 2.2rem;
-      cursor: pointer;
-      text-decoration: none;
-      clip-path: polygon(7px 0%, calc(100% - 7px) 0%, 100% 7px, 100% calc(100% - 7px), calc(100% - 7px) 100%, 7px 100%, 0% calc(100% - 7px), 0% 7px);
-      transition: box-shadow 0.3s, transform 0.3s;
-      display: inline-block;
-      text-align: center;
+      font-family:'Cinzel',serif; font-size:0.72rem; letter-spacing:0.28em; text-transform:uppercase;
+      color:var(--ink); background:linear-gradient(135deg,var(--gold-dim),var(--gold-light));
+      border:none; padding:0.85rem 2.2rem; cursor:pointer; text-decoration:none;
+      clip-path:polygon(7px 0%,calc(100% - 7px) 0%,100% 7px,100% calc(100% - 7px),calc(100% - 7px) 100%,7px 100%,0% calc(100% - 7px),0% 7px);
+      transition:box-shadow 0.3s,transform 0.3s; display:inline-block; text-align:center;
     }
-    
-    .btn-gold:hover { box-shadow: 0 6px 28px rgba(201,168,76,0.35); transform: translateY(-2px); }
-    .btn-gold:disabled { opacity: 0.5; cursor: not-allowed; transform: none; box-shadow: none; }
-
+    .btn-gold:hover { box-shadow:0 6px 28px rgba(201,168,76,0.35); transform:translateY(-2px); }
+    .btn-gold:disabled { opacity:0.5; cursor:not-allowed; transform:none; box-shadow:none; }
     .btn-outline {
-      font-family: 'Cinzel', serif;
-      font-size: 0.72rem;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-      color: var(--gold);
-      background: transparent;
-      border: 1px solid var(--gold-dim);
-      padding: 0.85rem 2.2rem;
-      cursor: pointer;
-      text-decoration: none;
-      clip-path: polygon(7px 0%, calc(100% - 7px) 0%, 100% 7px, 100% calc(100% - 7px), calc(100% - 7px) 100%, 7px 100%, 0% calc(100% - 7px), 0% 7px);
-      transition: all 0.3s;
-      display: inline-block;
-      text-align: center;
+      font-family:'Cinzel',serif; font-size:0.72rem; letter-spacing:0.28em; text-transform:uppercase;
+      color:var(--gold); background:transparent; border:1px solid var(--gold-dim);
+      padding:0.85rem 2.2rem; cursor:pointer; text-decoration:none;
+      clip-path:polygon(7px 0%,calc(100% - 7px) 0%,100% 7px,100% calc(100% - 7px),calc(100% - 7px) 100%,7px 100%,0% calc(100% - 7px),0% 7px);
+      transition:all 0.3s; display:inline-block; text-align:center;
     }
-    
-    .btn-outline:hover { background: rgba(201,168,76,0.09); border-color: var(--gold); transform: translateY(-2px); }
+    .btn-outline:hover { background:rgba(201,168,76,0.09); border-color:var(--gold); transform:translateY(-2px); }
 
-    /* ════════════════════════════
+    /* ═══════════════════════════════
        PAGE: SCHEDULE
-    ════════════════════════════ */
-    #page-schedule { background: var(--surface); }
+    ═══════════════════════════════ */
+    #page-schedule { background:var(--surface); }
+    #page-schedule .page-inner { max-width:720px; }
 
-    .timeline {
-      position: relative;
-      padding-left: 2.5rem;
-    }
-
+    .timeline { position:relative; padding-left:3rem; }
     .timeline::before {
-      content: '';
-      position: absolute;
-      left: 0; top: 8px; bottom: 8px;
-      width: 1px;
-      background: linear-gradient(to bottom, transparent, var(--gold-dim) 10%, var(--gold-dim) 90%, transparent);
+      content:''; position:absolute; left:0; top:8px; bottom:8px; width:1px;
+      background:linear-gradient(to bottom,transparent,var(--gold-dim) 10%,var(--gold-dim) 90%,transparent);
+    }
+    .tl-item { position:relative; padding-bottom:3rem; opacity:0; transform:translateX(-16px); transition:opacity 0.5s,transform 0.5s; }
+    .tl-item.vis { opacity:1; transform:translateX(0); }
+    .tl-item:last-child { padding-bottom:0; }
+    .tl-dot { position:absolute; left:-3rem; top:5px; width:10px; height:10px; background:var(--gold-dim); border:1.5px solid var(--gold); transform:rotate(45deg); margin-left:-4.5px; z-index:1; }
+    .tl-time { font-family:'Cinzel',serif; font-size:0.72rem; letter-spacing:0.2em; color:var(--gold); margin-bottom:0.35rem; }
+    .tl-event { font-family:'Noto Serif TC',serif; font-size:1.05rem; color:var(--parchment); font-weight:500; margin-bottom:0.3rem; }
+    .tl-desc { font-size:0.83rem; color:var(--parchment-dim); opacity:0.65; line-height:1.7; }
+    /* highlight card on hover */
+    .tl-item:hover .tl-dot { background:var(--gold); box-shadow:0 0 10px rgba(201,168,76,0.5); }
+    .tl-item:hover .tl-event { color:var(--gold-light); }
+
+    /* ═══════════════════════════════
+       PAGE: VENUE
+    ═══════════════════════════════ */
+    #page-venue { background:var(--surface); }
+    #page-venue .page-inner { max-width:1000px; }
+    .venue-grid { display:grid; grid-template-columns:1fr 1.2fr; gap:2.5rem; align-items:start; }
+    .venue-info-block { padding:2rem 2.2rem; }
+    .venue-field { margin-bottom:1.8rem; }
+    .venue-field:last-child { margin-bottom:0; }
+    .vf-label { font-family:'Cinzel',serif; font-size:0.6rem; letter-spacing:0.45em; color:var(--gold-dim); text-transform:uppercase; margin-bottom:0.45rem; }
+    .vf-value { font-size:0.92rem; color:var(--parchment); line-height:1.8; }
+    .venue-map-wrap { position:relative; height:100%; }
+    .venue-map-wrap iframe { width:100%; height:100%; min-height:360px; border:1px solid var(--border); display:block; filter:grayscale(30%) sepia(25%); }
+    .transport-block { margin-top:1.5rem; padding:1.6rem; }
+    .transport-title { font-family:'Cinzel',serif; font-size:0.62rem; letter-spacing:0.4em; color:var(--gold-dim); text-transform:uppercase; margin-bottom:1.2rem; }
+    .transport-item { display:flex; gap:0.8rem; margin-bottom:1rem; font-size:0.83rem; color:var(--parchment-dim); line-height:1.7; }
+    .transport-item:last-child { margin-bottom:0; }
+    .transport-icon { flex-shrink:0; width:1.4rem; text-align:center; }
+
+    /* ═══════════════════════════════
+       PAGE: MATCHING
+    ═══════════════════════════════ */
+    #page-matching { background:var(--surface); }
+    .match-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.8rem; margin-bottom:2rem; }
+    .match-card { padding:2.5rem 2rem; text-align:center; text-decoration:none; display:block; cursor:pointer; transition:all 0.3s; }
+    .match-card:hover { transform:translateY(-5px); box-shadow:0 16px 40px rgba(0,0,0,0.5); }
+    .match-icon { font-size:2.2rem; margin-bottom:1.1rem; }
+    .match-title { font-family:'Cinzel',serif; font-size:0.88rem; letter-spacing:0.18em; color:var(--gold); margin-bottom:0.7rem; }
+    .match-desc { font-size:0.82rem; color:var(--parchment-dim); line-height:1.75; margin-bottom:1.6rem; }
+    .match-btn { font-family:'Cinzel',serif; font-size:0.65rem; letter-spacing:0.28em; color:var(--gold-dim); border:1px solid var(--gold-dim); padding:0.55rem 1.4rem; display:inline-block; text-transform:uppercase; transition:all 0.3s; }
+    .match-card:hover .match-btn { background:var(--gold-dim); color:var(--ink); }
+    .match-query { padding:3rem 2.5rem; text-align:center; }
+    .match-query p { font-size:0.88rem; color:var(--parchment-dim); margin-bottom:1.5rem; line-height:1.8; }
+    .match-query input[type="text"] {
+      width:85%; max-width:380px; height:46px; font-size:0.95rem; border-radius:4px;
+      border:1px solid var(--border); background-color:rgba(0,0,0,0.2); color:var(--parchment);
+      padding:5px 12px; outline:none; transition:all var(--transition);
+      text-align:center; letter-spacing:1px; font-family:monospace,"Noto Serif TC";
+    }
+    .match-query input[type="text"]::placeholder { color:rgba(242,228,196,0.25); }
+    .match-query input[type="text"]:focus { border-color:var(--gold); background-color:rgba(201,168,76,0.05); box-shadow:0 0 15px rgba(201,168,76,0.2); }
+    .match-query .spinner { margin:2rem auto; width:36px; height:36px; border:3px solid rgba(201,168,76,0.15); border-top-color:var(--gold); border-radius:50%; animation:spin 1s linear infinite; }
+    @keyframes spin { 0%{transform:rotate(0deg);} 100%{transform:rotate(360deg);} }
+    .match-query .fade-message { opacity:0; transition:opacity 0.4s ease-in-out; margin-top:1.5rem; font-size:0.9rem; color:#ff6b6b; font-weight:500; }
+    .match-query .fade-message.show { opacity:1; }
+
+    /* ═══════════════════════════════
+       PAGE: REGISTER
+    ═══════════════════════════════ */
+    #page-register { background:var(--surface); }
+    .reg-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.8rem; margin-bottom:2rem; }
+    .reg-card { padding:2.8rem 2rem; text-align:center; text-decoration:none; display:block; transition:all 0.3s; }
+    .reg-card:hover { transform:translateY(-5px); box-shadow:0 16px 40px rgba(0,0,0,0.5); }
+    .reg-icon { font-size:2rem; margin-bottom:1rem; }
+    .reg-title { font-family:'Cinzel',serif; font-size:0.85rem; letter-spacing:0.18em; color:var(--gold); margin-bottom:0.7rem; }
+    .reg-desc { font-size:0.82rem; color:var(--parchment-dim); line-height:1.75; margin-bottom:1.6rem; }
+    .reg-btn { font-family:'Cinzel',serif; font-size:0.65rem; letter-spacing:0.28em; color:var(--ink); background:linear-gradient(135deg,var(--gold-dim),var(--gold)); padding:0.6rem 1.4rem; display:inline-block; text-transform:uppercase; transition:opacity 0.3s; }
+    .reg-card:hover .reg-btn { opacity:0.82; }
+    .reg-note { padding:1.5rem 2rem; text-align:center; }
+    .reg-note p { font-size:0.78rem; color:var(--parchment-dim); opacity:0.6; font-style:italic; line-height:2; }
+    .dress-section { margin-top:2.5rem; }
+    .dress-section p { font-size:0.87rem; color:var(--parchment-dim); line-height:2; margin-bottom:1rem; }
+    .dress-pills { display:flex; flex-wrap:wrap; gap:0.8rem; margin-top:1.2rem; }
+    .dress-pill { background:var(--gold-faint); border:1px solid var(--border); padding:0.45rem 1.1rem; font-family:'Cinzel',serif; font-size:0.62rem; letter-spacing:0.2em; color:var(--gold-dim); text-transform:uppercase; transition:all 0.3s; cursor:default; }
+    .dress-pill:hover { background:rgba(201,168,76,0.18); border-color:var(--gold-dim); color:var(--gold); transform:translateY(-2px); }
+
+    /* ═══════════════════════════════
+       PAGE: PERFORMERS
+    ═══════════════════════════════ */
+    #page-performers {
+      background: var(--deep);
+      overflow: hidden;
     }
 
-    .tl-item {
-      position: relative;
-      padding-bottom: 2.8rem;
+    /* 舞台聚光燈背景 canvas */
+    #perf-canvas {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      pointer-events: none; z-index: 0;
+    }
+
+    .performers-inner {
+      padding: 4rem 5rem 5rem;
+      max-width: 980px; margin: 0 auto;
+      position: relative; z-index: 1;
+    }
+
+    /* ── TAB 切換 ── */
+    .perf-tabs {
+      display: flex; margin-bottom: 3rem;
+      border-bottom: 1px solid var(--border); width: fit-content;
+    }
+    .perf-tab {
+      font-family:'Cinzel',serif; font-size:0.68rem; letter-spacing:0.35em;
+      text-transform:uppercase; color:var(--parchment-dim);
+      padding:0.7rem 2rem 0.9rem; cursor:pointer;
+      border-bottom: 2px solid transparent; margin-bottom: -1px;
+      transition: all 0.3s; user-select: none; position: relative;
+    }
+    .perf-tab::after {
+      content:''; position:absolute; bottom:-1px; left:0; right:0; height:2px;
+      background: linear-gradient(90deg, var(--gold-dim), var(--gold-light));
+      transform: scaleX(0); transition: transform 0.35s ease;
+    }
+    .perf-tab:hover { color:var(--gold); }
+    .perf-tab.active { color:var(--gold); }
+    .perf-tab.active::after { transform: scaleX(1); }
+
+    .perf-section { display:none; }
+    .perf-section.active { display:block; }
+
+    /* ── GRID ── */
+    .perf-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.6rem;
+    }
+
+    /* ── CARD 3D 傾斜容器 ── */
+    .perf-card-wrap {
+      perspective: 900px;
+    }
+
+    /* ── CARD 本體 ── */
+    .perf-card {
+      position: relative; overflow: hidden; cursor: pointer;
+      background: var(--panel); border: 1px solid var(--border);
+      aspect-ratio: 3/4; display: flex; flex-direction: column;
+      transform-style: preserve-3d;
+      transition: border-color 0.4s, box-shadow 0.4s;
+      will-change: transform;
+    }
+    .perf-card:hover {
+      border-color: var(--border-hover);
+      box-shadow: 0 24px 60px rgba(0,0,0,0.7), 0 0 0 1px rgba(201,168,76,0.12);
+    }
+
+    /* 游標追蹤聚光燈（JS 控制 --mx --my） */
+    .perf-card .card-spotlight {
+      position: absolute; inset: 0; z-index: 1; pointer-events: none;
+      background: radial-gradient(
+        circle 120px at var(--mx,50%) var(--my,50%),
+        rgba(201,168,76,0.13) 0%,
+        transparent 70%
+      );
+      opacity: 0; transition: opacity 0.35s;
+    }
+    .perf-card:hover .card-spotlight { opacity: 1; }
+
+    /* 頂部光掃 */
+    .perf-card .card-sweep {
+      position: absolute; top: 0; left: -100%; width: 60%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(201,168,76,0.06), transparent);
+      z-index: 1; pointer-events: none;
+      transition: left 0s;
+    }
+    .perf-card:hover .card-sweep {
+      left: 160%;
+      transition: left 0.7s ease;
+    }
+
+    /* 四角裝飾 */
+    .perf-card .card-corner {
+      position: absolute; width: 12px; height: 12px;
+      border-color: var(--gold-dim); border-style: solid;
+      z-index: 2; pointer-events: none;
+      transition: border-color 0.4s, width 0.4s, height 0.4s;
+    }
+    .perf-card:hover .card-corner { border-color: var(--gold); width: 18px; height: 18px; }
+    .card-corner.tl { top:-1px; left:-1px; border-width:1px 0 0 1px; }
+    .card-corner.tr { top:-1px; right:-1px; border-width:1px 1px 0 0; }
+    .card-corner.bl { bottom:-1px; left:-1px; border-width:0 0 1px 1px; }
+    .card-corner.br { bottom:-1px; right:-1px; border-width:0 1px 1px 0; }
+
+    /* ── AVATAR 區 ── */
+    .perf-avatar {
+      flex: 1; display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(to bottom, rgba(201,168,76,0.04), transparent);
+      position: relative; overflow: hidden;
+    }
+    /* CRT 掃描線 */
+    .perf-avatar::before {
+      content:''; position:absolute; inset:0; z-index:2; pointer-events:none;
+      background: repeating-linear-gradient(
+        to bottom,
+        transparent 0px, transparent 3px,
+        rgba(0,0,0,0.06) 3px, rgba(0,0,0,0.06) 4px
+      );
+    }
+    /* 底部漸層遮罩 */
+    .perf-avatar::after {
+      content:''; position:absolute; bottom:0; left:0; right:0; height:50%;
+      background: linear-gradient(to top, var(--panel), transparent);
+      z-index: 2; pointer-events: none;
+    }
+
+    .perf-avatar-icon {
+      font-size: 3.8rem; opacity: 0.28; position: relative; z-index: 3;
+      transition: opacity 0.45s, transform 0.45s;
+      filter: drop-shadow(0 0 0px rgba(201,168,76,0));
+    }
+    .perf-card:hover .perf-avatar-icon {
+      opacity: 0.7;
+      transform: scale(1.12) translateY(-4px);
+      filter: drop-shadow(0 0 20px rgba(201,168,76,0.5));
+    }
+
+    .perf-avatar-label {
+      position:absolute; bottom:1.2rem; left:50%; transform:translateX(-50%);
+      font-family:'Cinzel',serif; font-size:0.55rem; letter-spacing:0.45em;
+      color:var(--gold-dim); text-transform:uppercase; white-space:nowrap;
+      z-index:4; opacity:0; transition:opacity 0.4s, transform 0.4s;
+      transform: translateX(-50%) translateY(6px);
+    }
+    .perf-card:hover .perf-avatar-label { opacity:1; transform:translateX(-50%) translateY(0); }
+
+    /* ── INFO 條 ── */
+    .perf-info {
+      padding: 1.1rem 1.3rem;
+      border-top: 1px solid var(--border);
+      position: relative; z-index: 3;
+      background: linear-gradient(to top, rgba(16,14,10,0.98), rgba(22,19,13,0.88));
+      transition: padding 0.35s;
+    }
+    .perf-card:hover .perf-info { padding: 1.3rem 1.3rem; }
+
+    .perf-type {
+      font-family:'Cinzel',serif; font-size:0.52rem; letter-spacing:0.45em;
+      color:var(--gold-dim); text-transform:uppercase; margin-bottom:0.3rem;
+    }
+    .perf-name {
+      font-family:'Cinzel',serif; font-size:0.9rem; letter-spacing:0.1em;
+      color:var(--parchment); margin-bottom:0.25rem; transition: color 0.35s;
+    }
+    .perf-card:hover .perf-name { color:var(--gold-light); }
+    .perf-desc { font-size:0.73rem; color:var(--parchment-dim); opacity:0.55; line-height:1.5; }
+
+    /* ── DJ 變體 ── */
+    .perf-card.dj-card .perf-avatar {
+      background: linear-gradient(to bottom, rgba(122,21,21,0.15), transparent);
+    }
+    .perf-card.dj-card .card-spotlight {
+      background: radial-gradient(
+        circle 120px at var(--mx,50%) var(--my,50%),
+        rgba(200,50,50,0.14) 0%, transparent 70%
+      );
+    }
+    .perf-card.dj-card:hover {
+      box-shadow: 0 24px 60px rgba(0,0,0,0.7), 0 0 0 1px rgba(180,40,40,0.2);
+    }
+    .perf-card.dj-card:hover .card-corner { border-color: #9a3030; }
+    .perf-card.dj-card .perf-type { color:#9a3030; }
+    .perf-card.dj-card:hover .perf-name { color:#e07070; }
+
+    /* DJ canvas 波形（全時播放，懸停更激烈） */
+    .dj-viz-canvas {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      height: 55%; z-index: 3; pointer-events: none;
+      opacity: 0.18; transition: opacity 0.4s;
+    }
+    .perf-card.dj-card:hover .dj-viz-canvas { opacity: 0.65; }
+
+    /* ── TBA 卡片 ── */
+    .perf-card.tba {
+      border-style:dashed; border-color:rgba(201,168,76,0.08);
+      cursor:default;
+    }
+    .perf-card.tba:hover {
+      border-color:rgba(201,168,76,0.14);
+      box-shadow: none;
+      transform: none !important;
+    }
+    .perf-card.tba .card-spotlight,
+    .perf-card.tba .card-sweep { display:none; }
+    .perf-card.tba .perf-avatar-icon { opacity:0.1; }
+    .perf-card.tba .perf-name { color:var(--parchment-dim); opacity:0.3; }
+    .perf-card.tba:hover .perf-avatar-icon { opacity:0.1; transform:none; filter:none; }
+    .perf-card.tba:hover .card-corner { width:12px; height:12px; border-color:var(--gold-dim); }
+
+    /* ── TBA 脈動 ── */
+    @keyframes tbaPulse {
+      0%,100% { opacity:0.08; }
+      50%      { opacity:0.18; }
+    }
+    .perf-card.tba .perf-avatar-icon {
+      animation: tbaPulse 3s ease-in-out infinite;
+    }
+
+    /* ═══ ANIMATIONS ═══ */
+    @keyframes fadeUp { from{opacity:0;transform:translateY(22px);} to{opacity:1;transform:translateY(0);} }
+
+    /* ═══ HAMBURGER / RESPONSIVE ═══ */
+    #hamburger { display:none; position:fixed; top:1rem; left:1rem; z-index:200; background:var(--panel); border:1px solid var(--border); width:40px; height:40px; cursor:pointer; flex-direction:column; align-items:center; justify-content:center; gap:5px; }
+    #hamburger span { display:block; width:18px; height:1px; background:var(--gold); transition:all 0.3s; }
+    @media(max-width:820px){
+      :root{--sidebar-w:240px;}
+      #hamburger{display:flex;}
+      #sidebar{position:fixed;top:0;left:0;bottom:0;transform:translateX(-100%);transition:transform var(--transition);z-index:100;}
+      #sidebar.open{transform:translateX(0);}
+      /* 手機版 padding 上方留漢堡鍵空間，下方加 safe area */
+      .page-inner { padding:5rem 1.5rem max(3rem, env(safe-area-inset-bottom, 1rem)); }
+      .home-inner  { padding:5rem 1.5rem max(3rem, env(safe-area-inset-bottom, 1rem)); }
+      .performers-inner { padding:5rem 1.5rem max(3rem, env(safe-area-inset-bottom, 1rem)); }
+      .venue-grid,.match-grid,.reg-grid,.perf-grid{grid-template-columns:1fr;}
+      .home-meta{flex-wrap:wrap;gap:1.5rem;}
+      .match-query input[type="text"]{width:100%;}
+    }
+    @media(max-width:600px){
+      .perf-grid{grid-template-columns:repeat(2,1fr);}
+      .home-title{font-size:2.4rem;}
+      .home-cta{flex-direction:column;}
+      .countdown-blocks{gap:0.8rem;}
+      .cd-num{font-size:1.5rem;}
+    }
+
+    /* ════ 密信展開系統專屬樣式 ════ */
+    .letter-container {
+      width: 95%; /* 【修改】增加寬度比例 */
+      max-width: 650px; /* 【修改】信封與信紙最大寬度增加到 650px */
+      margin: 0 auto;
+      perspective: 1000px;
+      display: flex;
+      justify-content: center;
       opacity: 0;
-      transform: translateX(-12px);
-      transition: opacity 0.5s, transform 0.5s;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .letter-container.show {
+      opacity: 1;
+      transform: translateY(0);
     }
     
-    .tl-item.vis { opacity: 1; transform: translateX(0); }
-    .tl-item:last-child { padding-bottom: 0; }
+    /* 信封本體 */
+    .envelope {
+      position: relative;
+      width: 100%;
+      height: 200px; /* 稍微加高以配合更寬的信封 */
+      background: #221c13;
+      border: 1px solid var(--border);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.7);
+      transition: height 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .envelope.open {
+      height: 400px; 
+    }
+    /* 針對高度較矮的手機螢幕縮小 */
+    @media (max-height: 700px) {
+      .envelope.open { height: 300px; } 
+    }
 
-    .tl-dot {
+    /* 信封上蓋 */
+    .envelope-flap {
       position: absolute;
-      left: -2.5rem;
-      top: 4px;
-      width: 10px; height: 10px;
-      background: var(--gold-dim);
-      border: 1.5px solid var(--gold);
-      transform: rotate(45deg);
-      margin-left: -4.5px;
+      top: 0; left: 0; right: 0;
+      height: 100px;
+      background: #2e261c;
+      clip-path: polygon(0 0, 100% 0, 50% 100%);
+      transform-origin: top;
+      transition: transform 0.4s ease;
+      z-index: 3;
+    }
+    .envelope.open .envelope-flap {
+      transform: rotateX(180deg);
       z-index: 1;
     }
 
-    .tl-time {
-      font-family: 'Cinzel', serif;
-      font-size: 0.72rem;
-      letter-spacing: 0.2em;
-      color: var(--gold);
-      margin-bottom: 0.3rem;
-    }
-
-    .tl-event {
-      font-family: 'Noto Serif TC', serif;
-      font-size: 1rem;
-      color: var(--parchment);
-      font-weight: 500;
-      margin-bottom: 0.2rem;
-    }
-
-    .tl-desc {
-      font-size: 0.82rem;
-      color: var(--parchment-dim);
-      opacity: 0.65;
-      line-height: 1.6;
-    }
-
-    /* ════════════════════════════
-       PAGE: VENUE
-    ════════════════════════════ */
-    #page-venue { background: var(--surface); }
-
-    .venue-grid {
-      display: grid;
-      grid-template-columns: 1fr 1.1fr;
-      gap: 2.5rem;
-      align-items: start;
-    }
-
-    .venue-info-block {
-      padding: 2.2rem;
-    }
-
-    .venue-field { margin-bottom: 2rem; }
-    .venue-field:last-child { margin-bottom: 0; }
-
-    .vf-label {
-      font-family: 'Cinzel', serif;
-      font-size: 0.6rem;
-      letter-spacing: 0.45em;
-      color: var(--gold-dim);
-      text-transform: uppercase;
-      margin-bottom: 0.5rem;
-    }
-
-    .vf-value {
-      font-size: 0.92rem;
-      color: var(--parchment);
-      line-height: 1.8;
-    }
-
-    .venue-map-wrap {
-      position: relative;
-      height: 100%;
-    }
-
-    .venue-map-wrap iframe {
-      width: 100%;
-      height: 100%;
-      min-height: 360px;
-      border: 1px solid var(--border);
-      display: block;
-      filter: grayscale(30%) sepia(25%);
-    }
-
-    .transport-block {
-      margin-top: 1.5rem;
-      padding: 1.6rem;
-    }
-
-    .transport-title {
-      font-family: 'Cinzel', serif;
-      font-size: 0.62rem;
-      letter-spacing: 0.4em;
-      color: var(--gold-dim);
-      text-transform: uppercase;
-      margin-bottom: 1.2rem;
-    }
-
-    .transport-item {
-      display: flex;
-      gap: 0.8rem;
-      margin-bottom: 1rem;
-      font-size: 0.83rem;
-      color: var(--parchment-dim);
-      line-height: 1.7;
-    }
-    
-    .transport-item:last-child { margin-bottom: 0; }
-    .transport-icon { flex-shrink: 0; width: 1.4rem; text-align: center; }
-
-    /* ════════════════════════════
-       PAGE: MATCHING
-    ════════════════════════════ */
-    #page-matching { background: var(--surface); }
-
-    .match-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.8rem;
-      margin-bottom: 2rem;
-    }
-
-    .match-card {
-      padding: 2.5rem 2rem;
-      text-align: center;
-      text-decoration: none;
-      display: block;
-      cursor: pointer;
-      transition: all 0.3s;
-    }
-    
-    .match-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.45); }
-    .match-icon { font-size: 2.2rem; margin-bottom: 1.1rem; }
-    
-    .match-title {
-      font-family: 'Cinzel', serif;
-      font-size: 0.88rem;
-      letter-spacing: 0.18em;
-      color: var(--gold);
-      margin-bottom: 0.7rem;
-    }
-    
-    .match-desc {
-      font-size: 0.82rem;
-      color: var(--parchment-dim);
-      line-height: 1.75;
-      margin-bottom: 1.6rem;
-    }
-    
-    .match-btn {
-      font-family: 'Cinzel', serif;
-      font-size: 0.65rem;
-      letter-spacing: 0.28em;
-      color: var(--gold-dim);
-      border: 1px solid var(--gold-dim);
-      padding: 0.55rem 1.4rem;
-      display: inline-block;
-      text-transform: uppercase;
-      transition: all 0.3s;
-    }
-    
-    .match-card:hover .match-btn { background: var(--gold-dim); color: var(--ink); }
-
-    /* ── INTEGRATED QUERY STYLES ── */
-    .match-query {
-      padding: 3rem 2.5rem;
-      text-align: center;
-    }
-    
-    .match-query p {
-      font-size: 0.88rem;
-      color: var(--parchment-dim);
-      margin-bottom: 1.5rem;
-      line-height: 1.8;
-    }
-
-    .match-query input[type="text"] {
-      width: 85%;
-      max-width: 380px;
-      height: 46px;
-      font-size: 0.95rem;
-      border-radius: 4px;
-      border: 1px solid var(--border);
-      background-color: rgba(0, 0, 0, 0.2);
-      color: var(--parchment);
-      padding: 5px 12px;
-      outline: none;
-      transition: all var(--transition);
-      text-align: center;
-      letter-spacing: 1px;
-      font-family: monospace, "Noto Serif TC";
-    }
-
-    .match-query input[type="text"]::placeholder {
-      color: rgba(242, 228, 196, 0.25);
-    }
-
-    .match-query input[type="text"]:focus {
-      border-color: var(--gold);
-      background-color: rgba(201,168,76,0.05);
-      box-shadow: 0 0 15px rgba(201,168,76,0.2);
-    }
-
-    .match-query .spinner {
-      margin: 2rem auto;
-      width: 36px;
-      height: 36px;
-      border: 3px solid rgba(201,168,76,0.15);
-      border-top-color: var(--gold);
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-    }
-
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-
-    .match-query .fade-message {
+    /* 羊皮紙信件內容 */
+    .letter-content {
+      position: absolute;
+      inset: 10px;
+      background: #f2e4c4; 
+      color: #1a1105;     
+      padding: 2.5rem 1.8rem;
+      border: 1px solid #c8b080;
+      box-shadow: inset 0 0 30px rgba(138,106,26,0.2);
+      transform: translateY(0);
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), height 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 2;
       opacity: 0;
-      transition: opacity 0.4s ease-in-out;
-      margin-top: 1.5rem;
-      font-size: 0.9rem;
-      color: #ff6b6b;
-      font-weight: 500;
-    }
-
-    .match-query .fade-message.show { 
-      opacity: 1; 
-    }
-
-    /* Result Table Styling */
-    .match-query table {
-      width: 100%;
-      max-width: 650px;
-      margin: 2rem auto 0 auto;
-      border-collapse: collapse;
-      background-color: rgba(201,168,76,0.02);
-      border-radius: 4px;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    }
-
-    .match-query table tr:nth-child(even) {
-      background-color: rgba(201,168,76,0.04);
-    }
-
-    .match-query table td {
-      color: var(--parchment);
-      border: 1px solid var(--border);
-      padding: 14px 16px;
-      text-align: center;
-      font-size: 0.9rem;
-      line-height: 1.5;
-    }
-
-    /* ════════════════════════════
-       PAGE: REGISTER
-    ════════════════════════════ */
-    #page-register { background: var(--surface); }
-
-    .reg-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.8rem;
-      margin-bottom: 2rem;
-    }
-
-    .reg-card {
-      padding: 2.8rem 2rem;
-      text-align: center;
-      text-decoration: none;
-      display: block;
-      transition: all 0.3s;
-    }
-    
-    .reg-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.45); }
-    .reg-icon { font-size: 2rem; margin-bottom: 1rem; }
-    
-    .reg-title {
-      font-family: 'Cinzel', serif;
-      font-size: 0.85rem;
-      letter-spacing: 0.18em;
-      color: var(--gold);
-      margin-bottom: 0.7rem;
-    }
-    
-    .reg-desc {
-      font-size: 0.82rem;
-      color: var(--parchment-dim);
-      line-height: 1.75;
-      margin-bottom: 1.6rem;
-    }
-    
-    .reg-btn {
-      font-family: 'Cinzel', serif;
-      font-size: 0.65rem;
-      letter-spacing: 0.28em;
-      color: var(--ink);
-      background: linear-gradient(135deg, var(--gold-dim), var(--gold));
-      padding: 0.6rem 1.4rem;
-      display: inline-block;
-      text-transform: uppercase;
-      transition: opacity 0.3s;
-    }
-    
-    .reg-card:hover .reg-btn { opacity: 0.82; }
-
-    .reg-note {
-      padding: 1.5rem 2rem;
-      text-align: center;
-    }
-    
-    .reg-note p {
-      font-size: 0.78rem;
-      color: var(--parchment-dim);
-      opacity: 0.6;
-      font-style: italic;
-      line-height: 2;
-    }
-
-    .dress-section { margin-top: 2.5rem; }
-    .dress-section .page-eyebrow { margin-bottom: 0.8rem; }
-    
-    .dress-section p {
-      font-size: 0.87rem;
-      color: var(--parchment-dim);
-      line-height: 2;
-      margin-bottom: 1rem;
-    }
-
-    .dress-pills {
+      overflow-y: auto;   
+      overflow-x: hidden;
       display: flex;
-      flex-wrap: wrap;
-      gap: 0.8rem;
-      margin-top: 1.2rem;
-    }
-    
-    .dress-pill {
-      background: var(--gold-faint);
-      border: 1px solid var(--border);
-      padding: 0.45rem 1.1rem;
-      font-family: 'Cinzel', serif;
-      font-size: 0.62rem;
-      letter-spacing: 0.2em;
-      color: var(--gold-dim);
-      text-transform: uppercase;
-    }
-
-    /* ── ANIMATIONS ── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(22px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    /* ════════════════════════════
-       MOBILE HAMBURGER
-    ════════════════════════════ */
-    #hamburger {
-      display: none;
-      position: fixed;
-      top: 1rem; left: 1rem;
-      z-index: 200;
-      background: var(--panel);
-      border: 1px solid var(--border);
-      width: 40px; height: 40px;
-      cursor: pointer;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      gap: 5px;
+      justify-content: flex-start; 
     }
-    
-    #hamburger span {
-      display: block;
-      width: 18px; height: 1px;
-      background: var(--gold);
-      transition: all 0.3s;
+    @media(max-width: 600px) {
+      .letter-content { padding: 1.5rem 0.8rem; }
     }
 
-    /* ── RESPONSIVE ── */
-    @media (max-width: 820px) {
-      :root { --sidebar-w: 240px; }
-      #hamburger { display: flex; }
+    .letter-content::-webkit-scrollbar { width: 6px; }
+    .letter-content::-webkit-scrollbar-track { background: transparent; }
+    .letter-content::-webkit-scrollbar-thumb { background: #c8b080; border-radius: 4px; }
 
-      #sidebar {
-        position: fixed;
-        top: 0; left: 0; bottom: 0;
-        transform: translateX(-100%);
-        transition: transform var(--transition);
-        z-index: 100;
+    /* 展開後的信件高度設定 */
+    .envelope.open .letter-content {
+      transform: translateY(-130px); 
+      height: fit-content;           
+      min-height: 320px;             
+      max-height: 65vh;             
+      opacity: 1;
+    }
+    @media (max-width: 600px), (max-height: 700px) {
+      .envelope.open .letter-content { transform: translateY(-70px); }
+    }
+
+    /* 【修改】信件內部的叉叉關閉按鈕 */
+    .modal-close-btn {
+      position: absolute; 
+      top: 10px;
+      right: 14px;
+      background: transparent;
+      border: none;
+      color: #8a6a1a; /* 配合羊皮紙字體的深金色 */
+      font-size: 2.2rem;
+      line-height: 1;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: sans-serif;
+      z-index: 100;
+    }
+    .modal-close-btn:hover {
+      color: #7a1515; /* 懸浮時變成宮廷酒紅色 */
+      transform: scale(1.15) rotate(90deg); 
+    }
+
+    /* 信件內部裝飾 */
+    .letter-header {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: 1.1rem;
+      color: #7a1515;
+      border-bottom: 1px dashed #c8b080;
+      padding-bottom: 0.5rem;
+      margin-bottom: 1.5rem;
+      width: 80%;
+      text-align: center;
+      letter-spacing: 2px;
+      flex-shrink: 0;
+    }
+    @media(max-width: 600px) {
+      .letter-header { width: 100%; font-size: 0.95rem; letter-spacing: 1px; }
+    }
+
+    .letter-body {
+      width: 100%;
+      font-size: 1.05rem;
+      line-height: 2;
+      text-align: center;
+      font-weight: 500;
+    }
+    .letter-body table {
+      width: 100%;
+      margin: 0 auto;
+      text-align: left;
+      border-spacing: 0 12px;
+      font-size: 0.95rem;
+      table-layout: fixed; 
+      word-wrap: break-word; 
+    }
+    @media(max-width: 600px) {
+      .letter-body table { font-size: 0.82rem; }
+      .letter-body table td { 
+        padding-left: 6px !important; 
+        padding-right: 6px !important; 
       }
-      
-      #sidebar.open { transform: translateX(0); }
-      .page-inner, .home-inner { padding: 5.5rem 1.5rem 3rem 1.5rem; }
-      .venue-grid, .match-grid, .reg-grid { grid-template-columns: 1fr; }
-      .home-meta { flex-wrap: wrap; gap: 1.5rem; }
-      .match-query input[type="text"] { width: 100%; }
     }
 
-    @media (max-width: 500px) {
-      .home-title { font-size: 2.4rem; }
-      .home-cta { flex-direction: column; }
+    .letter-footer {
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      color: #8a6a1a;
+      margin-top: 1.5rem;
+      letter-spacing: 3px;
+      flex-shrink: 0;
+      padding-bottom: 0.5rem;
+    }
+
+    /* 彈出式視窗遮罩背景 */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(8, 7, 4, 0.85); 
+      backdrop-filter: blur(6px);      
+      z-index: 9999;                   
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    .modal-overlay .letter-container {
+      margin: 0;
+      position: relative;
     }
   </style>
 </head>
@@ -903,52 +737,25 @@
       <div class="sidebar-title">王冠之宴</div>
       <div class="sidebar-edition">第二十七屆 · MMXXVI</div>
     </div>
-
     <ul class="sidebar-nav" id="sidebarNav">
-      <li class="nav-item">
-        <a class="nav-link active" data-page="home">
-          <span class="nav-icon">🏰</span>
-          <span class="nav-label">首頁</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" data-page="schedule">
-          <span class="nav-icon">📜</span>
-          <span class="nav-label">活動時程</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" data-page="venue">
-          <span class="nav-icon">🗺️</span>
-          <span class="nav-label">場地交通</span>
-        </a>
-      </li>
+      <li class="nav-item"><a class="nav-link active" data-page="home"><span class="nav-icon">🏰</span><span class="nav-label">首頁</span></a></li>
+      <li class="nav-item"><a class="nav-link" data-page="schedule"><span class="nav-icon">📜</span><span class="nav-label">活動時程</span></a></li>
+      <li class="nav-item"><a class="nav-link" data-page="venue"><span class="nav-icon">🗺️</span><span class="nav-label">場地交通</span></a></li>
+      <li class="nav-item"><a class="nav-link" data-page="performers"><span class="nav-icon">🎶</span><span class="nav-label">表演陣容</span></a></li>
       <div class="nav-divider"></div>
-      <li class="nav-item">
-        <a class="nav-link" data-page="matching">
-          <span class="nav-icon">⚜️</span>
-          <span class="nav-label">配對系統</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" data-page="register">
-          <span class="nav-icon">🎭</span>
-          <span class="nav-label">活動報名</span>
-        </a>
-      </li>
+      <li class="nav-item"><a class="nav-link" data-page="matching"><span class="nav-icon">⚜️</span><span class="nav-label">配對系統</span></a></li>
+      <li class="nav-item"><a class="nav-link" data-page="register"><span class="nav-icon">🎭</span><span class="nav-label">活動報名</span></a></li>
     </ul>
-
-    <div class="sidebar-footer">
-      <p>國防大學理工學院<br>舞會籌備委員會</p>
-    </div>
+    <div class="sidebar-footer"><p>國防大學理工學院<br>舞會籌備委員會</p></div>
   </aside>
 
   <main id="main">
 
     <div class="page active" id="page-home">
-      <div class="home-rings">
-        <div class="ring"></div><div class="ring"></div><div class="ring"></div>
-      </div>
+      <!-- 星空 -->
+      <canvas id="star-canvas"></canvas>
+      <!-- 光暈跟隨 -->
+      <div id="home-glow"></div>
       <div class="home-inner">
         <p class="home-label">第二十七屆風嶺舞會 · Anno Domini MMXXVI</p>
         <div class="home-divider">
@@ -958,99 +765,56 @@
         </div>
         <h1 class="home-title">王冠之宴</h1>
         <p class="home-sub">國防大學理工學院 · 中世紀宮廷盛典</p>
-
         <div class="home-meta">
-          <div class="home-meta-item">
-            <p class="home-meta-label">舉辦日期</p>
-            <p class="home-meta-value">2026 · XII · V</p>
-          </div>
-          <div class="home-meta-item">
-            <p class="home-meta-label">活動時間</p>
-            <p class="home-meta-value">16:30 — 21:00</p>
-          </div>
-          <div class="home-meta-item">
-            <p class="home-meta-label">舉辦地點</p>
-            <p class="home-meta-value">國防大學理工學院</p>
-          </div>
+          <div class="home-meta-item"><p class="home-meta-label">舉辦日期</p><p class="home-meta-value">2026 · XII · V</p></div>
+          <div class="home-meta-item"><p class="home-meta-label">活動時間</p><p class="home-meta-value">16:30 — 21:00</p></div>
+          <div class="home-meta-item"><p class="home-meta-label">舉辦地點</p><p class="home-meta-value">國防大學理工學院</p></div>
         </div>
-
         <div class="home-cta">
           <a class="btn-gold" data-page="register" style="cursor:pointer">立即報名</a>
           <a class="btn-outline" data-page="matching" style="cursor:pointer">配對系統</a>
+        </div>
+        <div class="home-countdown">
+          <p class="countdown-label">距離盛典開幕</p>
+          <div class="countdown-blocks">
+            <div class="cd-block"><span class="cd-num" id="cd-days">--</span><span class="cd-unit">天</span></div>
+            <div class="cd-block"><span class="cd-num" id="cd-hours">--</span><span class="cd-unit">時</span></div>
+            <div class="cd-block"><span class="cd-num" id="cd-mins">--</span><span class="cd-unit">分</span></div>
+            <div class="cd-block"><span class="cd-num" id="cd-secs">--</span><span class="cd-unit">秒</span></div>
+          </div>
         </div>
       </div>
     </div>
 
     <div class="page" id="page-schedule">
       <div class="page-inner">
-        <p class="page-eyebrow">當日流程</p>
-        <h2 class="page-title">活動時程</h2>
-        <div class="page-ornament">
-          <div class="orn-line"></div>
-          <div class="orn-diamond"></div>
-          <div class="orn-line r"></div>
+        <p class="page-eyebrow reveal">當日流程</p>
+        <h2 class="page-title reveal">活動時程</h2>
+        <div class="page-ornament reveal">
+          <div class="orn-line"></div><div class="orn-diamond"></div><div class="orn-line r"></div>
         </div>
-
         <div class="timeline" id="timeline">
-          <div class="tl-item">
-            <div class="tl-dot"></div>
-            <p class="tl-time">16:30</p>
-            <p class="tl-event">賓客入場</p>
-            <p class="tl-desc">報到、換裝、拍照留念</p>
-          </div>
-          <div class="tl-item">
-            <div class="tl-dot"></div>
-            <p class="tl-time">17:00</p>
-            <p class="tl-event">開幕典禮</p>
-            <p class="tl-desc">主持人致詞、貴賓介紹</p>
-          </div>
-          <div class="tl-item">
-            <div class="tl-dot"></div>
-            <p class="tl-time">17:30</p>
-            <p class="tl-event">宮廷晚宴</p>
-            <p class="tl-desc">豐盛宴饗、交流聯誼</p>
-          </div>
-          <div class="tl-item">
-            <div class="tl-dot"></div>
-            <p class="tl-time">18:30</p>
-            <p class="tl-event">舞會表演</p>
-            <p class="tl-desc">節目表演、才藝展示</p>
-          </div>
-          <div class="tl-item">
-            <div class="tl-dot"></div>
-            <p class="tl-time">19:30</p>
-            <p class="tl-event">自由共舞</p>
-            <p class="tl-desc">音樂舞蹈、交誼時光</p>
-          </div>
-          <div class="tl-item">
-            <div class="tl-dot"></div>
-            <p class="tl-time">20:30</p>
-            <p class="tl-event">閉幕儀式</p>
-            <p class="tl-desc">頒獎典禮、大合照留念</p>
-          </div>
-          <div class="tl-item">
-            <div class="tl-dot"></div>
-            <p class="tl-time">21:00</p>
-            <p class="tl-event">賦歸</p>
-            <p class="tl-desc">感謝各位騎士與仕女蒞臨</p>
-          </div>
+          <div class="tl-item"><div class="tl-dot"></div><p class="tl-time">16:30</p><p class="tl-event">賓客入場</p><p class="tl-desc">報到、換裝、拍照留念</p></div>
+          <div class="tl-item"><div class="tl-dot"></div><p class="tl-time">17:00</p><p class="tl-event">開幕典禮</p><p class="tl-desc">主持人致詞、貴賓介紹</p></div>
+          <div class="tl-item"><div class="tl-dot"></div><p class="tl-time">17:30</p><p class="tl-event">宮廷晚宴</p><p class="tl-desc">豐盛宴饗、交流聯誼</p></div>
+          <div class="tl-item"><div class="tl-dot"></div><p class="tl-time">18:30</p><p class="tl-event">舞會表演</p><p class="tl-desc">節目表演、才藝展示</p></div>
+          <div class="tl-item"><div class="tl-dot"></div><p class="tl-time">19:30</p><p class="tl-event">自由共舞</p><p class="tl-desc">音樂舞蹈、交誼時光</p></div>
+          <div class="tl-item"><div class="tl-dot"></div><p class="tl-time">20:30</p><p class="tl-event">閉幕儀式</p><p class="tl-desc">頒獎典禮、大合照留念</p></div>
+          <div class="tl-item"><div class="tl-dot"></div><p class="tl-time">21:00</p><p class="tl-event">賦歸</p><p class="tl-desc">感謝各位騎士與仕女蒞臨</p></div>
         </div>
       </div>
     </div>
 
     <div class="page" id="page-venue">
-      <div class="page-inner" style="max-width:960px">
-        <p class="page-eyebrow">前往城堡</p>
-        <h2 class="page-title">場地與交通</h2>
-        <div class="page-ornament">
-          <div class="orn-line"></div>
-          <div class="orn-diamond"></div>
-          <div class="orn-line r"></div>
+      <div class="page-inner">
+        <p class="page-eyebrow reveal">前往城堡</p>
+        <h2 class="page-title reveal">場地與交通</h2>
+        <div class="page-ornament reveal">
+          <div class="orn-line"></div><div class="orn-diamond"></div><div class="orn-line r"></div>
         </div>
-
         <div class="venue-grid">
           <div>
-            <div class="card venue-info-block">
+            <div class="card venue-info-block reveal-left">
               <div class="venue-field">
                 <p class="vf-label">城堡所在</p>
                 <p class="vf-value">桃園市大溪區石園路75號<br>國防大學理工學院</p>
@@ -1064,29 +828,15 @@
                 <p class="vf-value">請務必攜帶有效身分證件<br>校外人士需事先完成報名</p>
               </div>
             </div>
-
-            <div class="card transport-block">
+            <div class="card transport-block reveal-left" style="transition-delay:0.1s">
               <p class="transport-title">交通指引（大眾運輸）</p>
-              <div class="transport-item">
-                <span class="transport-icon">🚌</span>
-                <div><strong style="color:var(--gold-dim)">台北出發</strong><br>自捷運永寧站搭乘 712 於瑞源站下車</div>
-              </div>
-              <div class="transport-item">
-                <span class="transport-icon">🚌</span>
-                <div><strong style="color:var(--gold-dim)">龍潭出發</strong><br>自桃客龍潭新站搭乘 712、5053 於瑞源站下車</div>
-              </div>
-              <div class="transport-item">
-                <span class="transport-icon">🚌</span>
-                <div><strong style="color:var(--gold-dim)">桃園出發</strong><br>自桃客總站搭乘 5053 於瑞源站下車</div>
-              </div>
+              <div class="transport-item"><span class="transport-icon">🚌</span><div><strong style="color:var(--gold-dim)">台北出發</strong><br>自捷運永寧站搭乘 712 於瑞源站下車</div></div>
+              <div class="transport-item"><span class="transport-icon">🚌</span><div><strong style="color:var(--gold-dim)">龍潭出發</strong><br>自桃客龍潭新站搭乘 712、5053 於瑞源站下車</div></div>
+              <div class="transport-item"><span class="transport-icon">🚌</span><div><strong style="color:var(--gold-dim)">桃園出發</strong><br>自桃客總站搭乘 5053 於瑞源站下車</div></div>
             </div>
           </div>
-
-          <div class="venue-map-wrap">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3619.534550679993!2d121.26293507537159!3d24.87974177791675!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x346817fbe187cd9d%3A0x6cf07f1e9c49225a!2z5ZyL6Ziy5aSn5a2455CG5bel5a246Zmi!5e0!3m2!1szh-TW!2stw!4v1781188182712!5m2!1szh-TW!2stw" width="600" height="450" style="border:0;"
-              allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-            </iframe>
+          <div class="venue-map-wrap reveal-right">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3619.534550679993!2d121.26293507537159!3d24.87974177791675!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x346817fbe187cd9d%3A0x6cf07f1e9c49225a!2z5ZyL6Ziy5aSn5a2455CG5bel5a246Zmi!5e0!3m2!1szh-TW!2stw!4v1781188182712!5m2!1szh-TW!2stw" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           </div>
         </div>
       </div>
@@ -1094,37 +844,31 @@
 
     <div class="page" id="page-matching">
       <div class="page-inner">
-        <p class="page-eyebrow">尋覓良緣</p>
-        <h2 class="page-title">配對系統</h2>
-        <div class="page-ornament">
-          <div class="orn-line"></div>
-          <div class="orn-diamond"></div>
-          <div class="orn-line r"></div>
+        <p class="page-eyebrow reveal">尋覓良緣</p>
+        <h2 class="page-title reveal">配對系統</h2>
+        <div class="page-ornament reveal">
+          <div class="orn-line"></div><div class="orn-diamond"></div><div class="orn-line r"></div>
         </div>
-
         <div class="match-grid">
-          <a href="#" class="card match-card" onclick="event.preventDefault();alert('請替換為校內配對 Google 表單連結')">
+          <a href="#" class="card match-card reveal-left" onclick="event.preventDefault();alert('請替換為校內配對 Google 表單連結')">
             <div class="match-icon">🏰</div>
             <h3 class="match-title">校內配對</h3>
             <p class="match-desc">國防大學理工學院在校學生專屬，填寫配對表單尋覓你的舞會伴侶。</p>
             <span class="match-btn">前往填寫</span>
           </a>
-          <a href="#" class="card match-card" onclick="event.preventDefault();alert('請替換為校外配對 Google 表單連結')">
+          <a href="#" class="card match-card reveal-right" onclick="event.preventDefault();alert('請替換為校外配對 Google 表單連結')">
             <div class="match-icon">⚜️</div>
             <h3 class="match-title">校外配對</h3>
             <p class="match-desc">校外貴賓專屬，跨越城牆尋覓命中注定的那一位。</p>
             <span class="match-btn">前往填寫</span>
           </a>
         </div>
-
-        <div class="card match-query">
+        <div class="card match-query reveal">
           <h3 style="font-family:'Cinzel',serif;font-size:1.1rem;letter-spacing:0.15em;color:var(--gold);margin-bottom:0.6rem">配對結果查詢系統</h3>
           <p>已完成配對報名？輸入您的身分證字號＋驗證碼查詢結果。</p>
-          
-          <input type="text" id="uid" placeholder="範例：A1234567891234" oninput="this.value = this.value.toUpperCase();" />
-          <br />
-          <button type="button" class="btn-gold" style="margin-top: 1.5rem;" onclick="showHint(document.getElementById('uid').value);">確 定</button>
-          
+          <input type="text" id="uid" placeholder="範例：A1234567891234" oninput="this.value=this.value.toUpperCase();" />
+          <br/>
+          <button type="button" class="btn-gold" style="margin-top:1.5rem;" onclick="showHint(document.getElementById('uid').value);">確 定</button>
           <div id="order_status"></div>
         </div>
       </div>
@@ -1132,35 +876,29 @@
 
     <div class="page" id="page-register">
       <div class="page-inner">
-        <p class="page-eyebrow">入場資格</p>
-        <h2 class="page-title">活動報名</h2>
-        <div class="page-ornament">
-          <div class="orn-line"></div>
-          <div class="orn-diamond"></div>
-          <div class="orn-line r"></div>
+        <p class="page-eyebrow reveal">入場資格</p>
+        <h2 class="page-title reveal">活動報名</h2>
+        <div class="page-ornament reveal">
+          <div class="orn-line"></div><div class="orn-diamond"></div><div class="orn-line r"></div>
         </div>
-
         <div class="reg-grid">
-          <a href="#" class="card reg-card" onclick="event.preventDefault();alert('請替換為校外報名 Google 表單連結')">
+          <a href="#" class="card reg-card reveal-left" onclick="event.preventDefault();alert('請替換為校外報名 Google 表單連結')">
             <div class="reg-icon">🎭</div>
             <h3 class="reg-title">校外賓客報名</h3>
             <p class="reg-desc">校外人士自行報名（不參加配對），歡迎各方英雄豪傑蒞臨共襄盛舉。</p>
             <span class="reg-btn">前往報名</span>
           </a>
-          <a href="#" class="card reg-card" onclick="event.preventDefault();alert('請替換為校友報名 Google 表單連結')">
+          <a href="#" class="card reg-card reveal-right" onclick="event.preventDefault();alert('請替換為校友報名 Google 表單連結')">
             <div class="reg-icon">🗡️</div>
             <h3 class="reg-title">校友報名</h3>
             <p class="reg-desc">歡迎歷屆校友返校，重溫舊日榮光，共赴這場中世紀盛宴。</p>
             <span class="reg-btn">前往報名</span>
           </a>
         </div>
-
-        <div class="card reg-note">
-          <p>※ 所有報名均需透過 Google 表單完成，請確認填寫完整資料<br>
-             ※ 校外賓客請務必攜帶有效身分證件入場</p>
+        <div class="card reg-note reveal">
+          <p>※ 所有報名均需透過 Google 表單完成，請確認填寫完整資料<br>※ 校外賓客請務必攜帶有效身分證件入場</p>
         </div>
-
-        <div class="dress-section">
+        <div class="dress-section reveal">
           <p class="page-eyebrow" style="margin-top:3rem">宮廷禮儀</p>
           <h3 style="font-family:'Cinzel',serif;font-size:1rem;letter-spacing:0.2em;color:var(--gold);margin-bottom:1.2rem">衣著建議</h3>
           <p>本屆舞會主題為中世紀宮廷風格，邀請所有賓客以華麗的宮廷服飾赴宴，一同沉浸在這場跨越時空的盛典之中。</p>
@@ -1176,118 +914,603 @@
       </div>
     </div>
 
+    <div class="page" id="page-performers">
+      <canvas id="perf-canvas"></canvas>
+      <div class="performers-inner">
+        <p class="page-eyebrow reveal">當晚表演陣容</p>
+        <h2 class="page-title reveal">宮廷藝人</h2>
+        <div class="page-ornament reveal">
+          <div class="orn-line"></div><div class="orn-diamond"></div><div class="orn-line r"></div>
+        </div>
+        <div class="perf-tabs reveal">
+          <div class="perf-tab active" data-tab="artists">🎭 &nbsp;表演藝人</div>
+          <div class="perf-tab" data-tab="djs">🎧 &nbsp;DJ 陣容</div>
+        </div>
+
+        <!-- 表演藝人 -->
+        <div class="perf-section active" id="tab-artists">
+          <div class="perf-grid">
+
+            <div class="perf-card-wrap"><div class="perf-card">
+              <div class="card-spotlight"></div><div class="card-sweep"></div>
+              <div class="card-corner tl"></div><div class="card-corner tr"></div><div class="card-corner bl"></div><div class="card-corner br"></div>
+              <div class="perf-avatar"><span class="perf-avatar-icon">🎭</span><span class="perf-avatar-label">即將公告</span></div>
+              <div class="perf-info"><p class="perf-type">表演藝人 · 01</p><p class="perf-name">藝人名稱 TBA</p><p class="perf-desc">表演類型與介紹即將公告</p></div>
+            </div></div>
+
+            <div class="perf-card-wrap"><div class="perf-card">
+              <div class="card-spotlight"></div><div class="card-sweep"></div>
+              <div class="card-corner tl"></div><div class="card-corner tr"></div><div class="card-corner bl"></div><div class="card-corner br"></div>
+              <div class="perf-avatar"><span class="perf-avatar-icon">🎤</span><span class="perf-avatar-label">即將公告</span></div>
+              <div class="perf-info"><p class="perf-type">表演藝人 · 02</p><p class="perf-name">藝人名稱 TBA</p><p class="perf-desc">表演類型與介紹即將公告</p></div>
+            </div></div>
+
+            <div class="perf-card-wrap"><div class="perf-card">
+              <div class="card-spotlight"></div><div class="card-sweep"></div>
+              <div class="card-corner tl"></div><div class="card-corner tr"></div><div class="card-corner bl"></div><div class="card-corner br"></div>
+              <div class="perf-avatar"><span class="perf-avatar-icon">🎻</span><span class="perf-avatar-label">即將公告</span></div>
+              <div class="perf-info"><p class="perf-type">表演藝人 · 03</p><p class="perf-name">藝人名稱 TBA</p><p class="perf-desc">表演類型與介紹即將公告</p></div>
+            </div></div>
+
+            <div class="perf-card-wrap"><div class="perf-card tba">
+              <div class="card-corner tl"></div><div class="card-corner tr"></div><div class="card-corner bl"></div><div class="card-corner br"></div>
+              <div class="perf-avatar"><span class="perf-avatar-icon">✦</span></div>
+              <div class="perf-info"><p class="perf-type">表演藝人 · 04</p><p class="perf-name">敬請期待</p><p class="perf-desc">更多表演者陸續公告中</p></div>
+            </div></div>
+
+            <div class="perf-card-wrap"><div class="perf-card tba">
+              <div class="card-corner tl"></div><div class="card-corner tr"></div><div class="card-corner bl"></div><div class="card-corner br"></div>
+              <div class="perf-avatar"><span class="perf-avatar-icon">✦</span></div>
+              <div class="perf-info"><p class="perf-type">表演藝人 · 05</p><p class="perf-name">敬請期待</p><p class="perf-desc">更多表演者陸續公告中</p></div>
+            </div></div>
+
+            <div class="perf-card-wrap"><div class="perf-card tba">
+              <div class="card-corner tl"></div><div class="card-corner tr"></div><div class="card-corner bl"></div><div class="card-corner br"></div>
+              <div class="perf-avatar"><span class="perf-avatar-icon">✦</span></div>
+              <div class="perf-info"><p class="perf-type">表演藝人 · 06</p><p class="perf-name">敬請期待</p><p class="perf-desc">更多表演者陸續公告中</p></div>
+            </div></div>
+
+          </div>
+        </div>
+
+        <!-- DJ 陣容 -->
+        <div class="perf-section" id="tab-djs">
+          <div class="perf-grid">
+
+            <div class="perf-card-wrap"><div class="perf-card dj-card">
+              <div class="card-spotlight"></div><div class="card-sweep"></div>
+              <div class="card-corner tl"></div><div class="card-corner tr"></div><div class="card-corner bl"></div><div class="card-corner br"></div>
+              <div class="perf-avatar">
+                <span class="perf-avatar-icon">🎧</span>
+                <span class="perf-avatar-label">即將公告</span>
+                <canvas class="dj-viz-canvas"></canvas>
+              </div>
+              <div class="perf-info"><p class="perf-type">DJ · 01</p><p class="perf-name">DJ 名稱 TBA</p><p class="perf-desc">風格介紹即將公告</p></div>
+            </div></div>
+
+            <div class="perf-card-wrap"><div class="perf-card dj-card">
+              <div class="card-spotlight"></div><div class="card-sweep"></div>
+              <div class="card-corner tl"></div><div class="card-corner tr"></div><div class="card-corner bl"></div><div class="card-corner br"></div>
+              <div class="perf-avatar">
+                <span class="perf-avatar-icon">🎛️</span>
+                <span class="perf-avatar-label">即將公告</span>
+                <canvas class="dj-viz-canvas"></canvas>
+              </div>
+              <div class="perf-info"><p class="perf-type">DJ · 02</p><p class="perf-name">DJ 名稱 TBA</p><p class="perf-desc">風格介紹即將公告</p></div>
+            </div></div>
+
+            <div class="perf-card-wrap"><div class="perf-card dj-card tba">
+              <div class="card-corner tl"></div><div class="card-corner tr"></div><div class="card-corner bl"></div><div class="card-corner br"></div>
+              <div class="perf-avatar"><span class="perf-avatar-icon">✦</span></div>
+              <div class="perf-info"><p class="perf-type">DJ · 03</p><p class="perf-name">敬請期待</p><p class="perf-desc">更多 DJ 陸續公告中</p></div>
+            </div></div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
   </main>
 
   <script>
-    // ── SPA ROUTER ──
-    const pages    = document.querySelectorAll('.page');
-    const navLinks = document.querySelectorAll('[data-page]');
+  // ═══════════════════════════════
+  // HOME: 星空背景
+  // ═══════════════════════════════
+  (function() {
+    const canvas = document.getElementById('star-canvas');
+    const ctx    = canvas.getContext('2d');
+    const home   = document.getElementById('page-home');
+    let W, H;
 
-    function navigate(id) {
-      pages.forEach(p => p.classList.remove('active'));
-      navLinks.forEach(l => l.classList.remove('active'));
+    // 三層星星：遠(small/slow)、中(mid)、近(large/fast/twinkle)
+    const LAYERS = [
+      { count:160, rMin:0.25, rMax:0.7,  speed:0.012, alpha:0.35, twinkle:false, parallax:2  },
+      { count:70,  rMin:0.5,  rMax:1.1,  speed:0.022, alpha:0.55, twinkle:false, parallax:5  },
+      { count:25,  rMin:0.9,  rMax:1.6,  speed:0.035, alpha:0.85, twinkle:true,  parallax:10 },
+    ];
+    let stars = [];
+    // 游標偏移（正規化 -0.5~0.5）
+    let mx = 0, my = 0;
 
-      const target = document.getElementById('page-' + id);
-      if (target) {
-        target.classList.add('active');
-        target.scrollTop = 0;
-      }
-
-      navLinks.forEach(l => {
-        if (l.dataset.page === id) l.classList.add('active');
-      });
-
-      document.getElementById('sidebar').classList.remove('open');
-
-      if (id === 'schedule') {
-        setTimeout(() => {
-          document.querySelectorAll('.tl-item').forEach((el, i) => {
-            setTimeout(() => el.classList.add('vis'), i * 80);
+    function resize() {
+      W = canvas.width  = home.offsetWidth;
+      H = canvas.height = home.offsetHeight;
+      // 重建星星，保留 seed 般的穩定分布
+      stars = [];
+      LAYERS.forEach(L => {
+        for (let i = 0; i < L.count; i++) {
+          stars.push({
+            x:      Math.random() * W,
+            y:      Math.random() * H,
+            r:      L.rMin + Math.random() * (L.rMax - L.rMin),
+            alpha:  L.alpha * (0.5 + Math.random() * 0.5),
+            speed:  L.speed * (0.6 + Math.random() * 0.8),
+            // 閃爍相位與週期
+            phase:  Math.random() * Math.PI * 2,
+            period: 2.5 + Math.random() * 4,
+            twinkle: L.twinkle,
+            parallax: L.parallax,
+            // 偶爾加十字光芒
+            cross:  L.twinkle && Math.random() < 0.35,
           });
-        }, 50);
-      }
+        }
+      });
     }
 
-    navLinks.forEach(el => {
-      el.addEventListener('click', e => {
-        e.preventDefault();
-        navigate(el.dataset.page);
+    let t = 0;
+    function draw() {
+      ctx.clearRect(0, 0, W, H);
+      t += 0.016; // ~60fps 遞增
+
+      stars.forEach(s => {
+        // 閃爍
+        let a = s.alpha;
+        if (s.twinkle) {
+          const flicker = Math.sin(t / s.period * Math.PI * 2 + s.phase);
+          a = s.alpha * (0.55 + 0.45 * flicker);
+        }
+
+        // 視差偏移（游標帶動）
+        const ox = mx * s.parallax;
+        const oy = my * s.parallax;
+
+        // 極緩慢飄移（像大氣折射）
+        s.x += Math.sin(t * s.speed + s.phase) * 0.08;
+        s.y += Math.cos(t * s.speed * 0.7 + s.phase) * 0.05;
+
+        // 超出邊界繞回
+        const px = ((s.x + ox) % W + W) % W;
+        const py = ((s.y + oy) % H + H) % H;
+
+        // 畫圓點
+        ctx.beginPath();
+        ctx.arc(px, py, s.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(240,220,170,${a})`;
+        ctx.fill();
+
+        // 十字光芒（近層大星）
+        if (s.cross && a > 0.4) {
+          const len = s.r * 3.5;
+          ctx.strokeStyle = `rgba(240,210,140,${a * 0.45})`;
+          ctx.lineWidth = 0.6;
+          ctx.beginPath();
+          ctx.moveTo(px - len, py); ctx.lineTo(px + len, py);
+          ctx.moveTo(px, py - len); ctx.lineTo(px, py + len);
+          ctx.stroke();
+        }
       });
+
+      requestAnimationFrame(draw);
+    }
+
+    // 游標偏移更新
+    home.addEventListener('mousemove', e => {
+      const r = home.getBoundingClientRect();
+      mx = (e.clientX - r.left) / r.width  - 0.5;
+      my = (e.clientY - r.top)  / r.height - 0.5;
+    });
+    home.addEventListener('mouseleave', () => { mx = 0; my = 0; });
+    home.addEventListener('touchmove', e => {
+      const r = home.getBoundingClientRect();
+      const t0 = e.touches[0];
+      mx = (t0.clientX - r.left) / r.width  - 0.5;
+      my = (t0.clientY - r.top)  / r.height - 0.5;
+    }, { passive: true });
+    home.addEventListener('touchend', () => { mx = 0; my = 0; });
+
+    new ResizeObserver(resize).observe(home);
+    resize();
+    draw();
+  })();
+
+  // ═══════════════════════════════
+  // HOME: COUNTDOWN
+  // ═══════════════════════════════
+  (function() {
+    const target = new Date('2026-12-05T16:30:00+08:00').getTime();
+    function tick() {
+      const now = Date.now();
+      const diff = target - now;
+      if (diff <= 0) {
+        ['days','hours','mins','secs'].forEach(id => document.getElementById('cd-' + id).textContent = '00');
+        return;
+      }
+      const d = Math.floor(diff / 86400000);
+      const h = Math.floor((diff % 86400000) / 3600000);
+      const m = Math.floor((diff % 3600000) / 60000);
+      const s = Math.floor((diff % 60000) / 1000);
+      document.getElementById('cd-days').textContent  = String(d).padStart(2,'0');
+      document.getElementById('cd-hours').textContent = String(h).padStart(2,'0');
+      document.getElementById('cd-mins').textContent  = String(m).padStart(2,'0');
+      document.getElementById('cd-secs').textContent  = String(s).padStart(2,'0');
+    }
+    tick(); setInterval(tick, 1000);
+  })();
+
+  // ═══════════════════════════════
+  // PERFORMERS: 舞台背景 + 3D 傾斜 + 聚光燈 + DJ 波形
+  // ═══════════════════════════════
+  (function() {
+    const perfPage = document.getElementById('page-performers');
+    if (!perfPage) return;
+
+    // ── 舞台背景 canvas（三條掃光束）──
+    const bgCanvas = document.getElementById('perf-canvas');
+    const bgCtx    = bgCanvas.getContext('2d');
+    let BW, BH;
+
+    function resizeBg() {
+      BW = bgCanvas.width  = perfPage.offsetWidth;
+      BH = bgCanvas.height = perfPage.offsetHeight;
+    }
+
+    const beams = [
+      { x: 0.25, angle: 0.38, speed: 0.0004, hue: 30,  alpha: 0.045, spread: 0.22 },
+      { x: 0.70, angle: -0.3, speed: 0.0003, hue: 0,   alpha: 0.04,  spread: 0.18 },
+      { x: 0.50, angle: 0.10, speed: 0.0005, hue: 20,  alpha: 0.028, spread: 0.28 },
+    ];
+    let bgT = 0;
+
+    function drawBg() {
+      bgCtx.clearRect(0, 0, BW, BH);
+
+      // 深色暈染底
+      bgCtx.fillStyle = 'rgba(8,7,4,0.92)';
+      bgCtx.fillRect(0, 0, BW, BH);
+
+      beams.forEach((b, i) => {
+        // 光束緩慢左右擺
+        const swing = Math.sin(bgT * b.speed * 1000 + i * 2.1) * 0.12;
+        const ang   = b.angle + swing;
+        const ox    = BW * b.x;
+        const spread = BW * b.spread;
+
+        // 從頂部射下的扇形漸層
+        const x1 = ox;
+        const y1 = 0;
+        const x2 = ox + Math.sin(ang) * BH;
+        const y2 = BH;
+        const grad = bgCtx.createLinearGradient(x1, y1, x2, y2);
+        const c = b.hue === 0
+          ? `rgba(180,40,40,${b.alpha})`
+          : `rgba(201,168,76,${b.alpha})`;
+        grad.addColorStop(0, c);
+        grad.addColorStop(1, 'rgba(0,0,0,0)');
+
+        bgCtx.save();
+        bgCtx.beginPath();
+        bgCtx.moveTo(ox, 0);
+        bgCtx.lineTo(ox - spread, BH);
+        bgCtx.lineTo(ox + spread + Math.sin(ang) * BH * 0.6, BH);
+        bgCtx.closePath();
+        bgCtx.fillStyle = grad;
+        bgCtx.fill();
+        bgCtx.restore();
+      });
+
+      bgT++;
+      requestAnimationFrame(drawBg);
+    }
+
+    new ResizeObserver(resizeBg).observe(perfPage);
+    resizeBg();
+    drawBg();
+
+    // ── 3D 傾斜 + 聚光燈 ──
+    function initCards() {
+      perfPage.querySelectorAll('.perf-card:not(.tba)').forEach(card => {
+        const spotlight = card.querySelector('.card-spotlight');
+
+        card.addEventListener('mousemove', e => {
+          const r   = card.getBoundingClientRect();
+          const x   = e.clientX - r.left;
+          const y   = e.clientY - r.top;
+          const nx  = x / r.width  - 0.5;  // -0.5 ~ 0.5
+          const ny  = y / r.height - 0.5;
+
+          // 3D 傾斜（最多 ±10deg）
+          card.style.transform = `rotateY(${nx * 14}deg) rotateX(${-ny * 10}deg) translateZ(6px)`;
+
+          // 游標追蹤聚光燈
+          if (spotlight) {
+            spotlight.style.setProperty('--mx', (x / r.width  * 100) + '%');
+            spotlight.style.setProperty('--my', (y / r.height * 100) + '%');
+          }
+        });
+
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = 'rotateY(0deg) rotateX(0deg) translateZ(0px)';
+          card.style.transition = 'transform 0.55s cubic-bezier(0.23,1,0.32,1), border-color 0.4s, box-shadow 0.4s';
+          setTimeout(() => { card.style.transition = ''; }, 600);
+        });
+      });
+    }
+
+    // ── DJ 波形 canvas ──
+    function initDJWave(canvas, isDark) {
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      const card = canvas.closest('.perf-card');
+      let W, H;
+      const bars  = 40;
+      const seeds = Array.from({length: bars}, () => Math.random() * Math.PI * 2);
+      let t = 0;
+
+      function resize() {
+        W = canvas.width  = canvas.offsetWidth  || card.offsetWidth;
+        H = canvas.height = canvas.offsetHeight || 80;
+      }
+
+      function draw() {
+        ctx.clearRect(0, 0, W, H);
+        const bw   = W / bars;
+        const hov  = card.matches(':hover');
+        const amp  = hov ? 0.85 : 0.35;
+
+        for (let i = 0; i < bars; i++) {
+          const phase = seeds[i];
+          const h = H * amp * (0.2 + 0.8 * Math.abs(
+            Math.sin(t * 0.04 + phase) * Math.cos(t * 0.025 + phase * 0.7)
+          ));
+          const x = i * bw + bw * 0.15;
+          const w = bw * 0.65;
+
+          const grad = ctx.createLinearGradient(0, H - h, 0, H);
+          grad.addColorStop(0, isDark ? 'rgba(200,60,60,0.9)' : 'rgba(201,168,76,0.9)');
+          grad.addColorStop(1, isDark ? 'rgba(120,20,20,0.2)' : 'rgba(140,100,20,0.2)');
+          ctx.fillStyle = grad;
+          ctx.fillRect(x, H - h, w, h);
+        }
+        t++;
+        requestAnimationFrame(draw);
+      }
+
+      new ResizeObserver(resize).observe(canvas);
+      resize();
+      draw();
+    }
+
+    // 初始化 DJ 波形
+    perfPage.querySelectorAll('.dj-viz-canvas').forEach((c, i) => {
+      initDJWave(c, true);
     });
 
-    navigate('home');
+    // 初始化卡片互動
+    initCards();
 
+    // tab 切換後重新綁定
+    perfPage.querySelectorAll('.perf-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        setTimeout(initCards, 50);
+      });
+    });
+  })();
 
-    // ── MATCH QUERY LOGIC (後端 API 串接邏輯) ──
-    function showMessage(msg) {
-      const orderStatus = document.getElementById("order_status");
-      orderStatus.innerHTML = `<div class="fade-message">${msg}</div>`;
-      const msgDiv = orderStatus.querySelector(".fade-message");
-      
-      // 觸發漸顯動畫
-      setTimeout(() => { if(msgDiv) msgDiv.classList.add("show"); }, 50);
-      // 漸隱並清除
-      setTimeout(() => { if(msgDiv) msgDiv.classList.remove("show"); }, 2500);
-      setTimeout(() => { orderStatus.innerHTML = ""; }, 3000);
+  // ═══════════════════════════════
+  // PERFORMER TABS
+  // ═══════════════════════════════
+  document.querySelectorAll('.perf-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.perf-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.perf-section').forEach(s => s.classList.remove('active'));
+      tab.classList.add('active');
+      const target = document.getElementById('tab-' + tab.dataset.tab);
+      if (target) target.classList.add('active');
+    });
+  });
+
+  // ═══════════════════════════════
+  // SCROLL REVEAL (per-page observer)
+  // ═══════════════════════════════
+  function initReveal(pageEl) {
+    const items = pageEl.querySelectorAll('.reveal,.reveal-left,.reveal-right,.tl-item');
+    if (!items.length) return;
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('vis'); obs.unobserve(e.target); } });
+    }, { threshold: 0.12, root: pageEl });
+    items.forEach((el, i) => {
+      if (!el.style.transitionDelay) el.style.transitionDelay = (i * 0.05) + 's';
+      obs.observe(el);
+    });
+  }
+
+  // ═══════════════════════════════
+  // SPA ROUTER
+  // ═══════════════════════════════
+  const pages    = document.querySelectorAll('.page');
+  const navLinks = document.querySelectorAll('[data-page]');
+  const revealed = new Set();
+
+  function navigate(id) {
+    pages.forEach(p => p.classList.remove('active'));
+    navLinks.forEach(l => l.classList.remove('active'));
+
+    const target = document.getElementById('page-' + id);
+    if (target) { target.classList.add('active'); target.scrollTop = 0; }
+
+    navLinks.forEach(l => { if (l.dataset.page === id) l.classList.add('active'); });
+    document.getElementById('sidebar').classList.remove('open');
+
+    // init reveal once per page
+    if (target && !revealed.has(id)) {
+      revealed.add(id);
+      setTimeout(() => initReveal(target), 80);
     }
 
-    function showHint(str) {
-      const inputStr = str.trim();
-      if(!inputStr) { 
-        showMessage("⚠️ 請輸入身分證＋驗證碼！"); 
-        return; 
-      }
+    // performer card entrance
+    if (id === 'performers') {
+      setTimeout(() => {
+        document.querySelectorAll('.perf-card').forEach((el, i) => {
+          el.style.opacity = '0';
+          el.style.transform = 'translateY(20px)';
+          el.style.transition = `opacity 0.45s ease ${i*0.06}s, transform 0.45s ease ${i*0.06}s, border-color 0.4s, box-shadow 0.4s`;
+          setTimeout(() => { el.style.opacity='1'; el.style.transform='translateY(0)'; }, 40);
+        });
+      }, 80);
+    }
+  }
 
-      // 鎖定配對查詢卡片內的按鈕，防重複點擊
-      var btn = document.querySelector('.match-query .btn-gold');
-      btn.disabled = true;
-      var orderStatus = document.getElementById("order_status");
-      orderStatus.innerHTML = '<div class="spinner"></div>';
+  navLinks.forEach(el => {
+    el.addEventListener('click', e => { e.preventDefault(); navigate(el.dataset.page); });
+  });
 
-      var xmlhttp = new XMLHttpRequest();
-      xmlhttp.onreadystatechange = function() {
-        if (xmlhttp.readyState == 4) {
-          btn.disabled = false;
+  navigate('home');
 
-          if (xmlhttp.status == 200) {
-            try {
-              var obj = JSON.parse(xmlhttp.responseText);
-            } catch(e) {
-              showMessage("⚠️ 無法解析伺服器回應！");
-              orderStatus.innerHTML = "";
-              return;
-            }
+  // ═══════════════════════════════
+  // MATCH QUERY API
+  // ═══════════════════════════════
+  function showMessage(msg) {
+    const orderStatus = document.getElementById('order_status');
+    orderStatus.innerHTML = `<div class="fade-message">${msg}</div>`;
+    const msgDiv = orderStatus.querySelector('.fade-message');
+    setTimeout(() => { if(msgDiv) msgDiv.classList.add('show'); }, 50);
+    setTimeout(() => { if(msgDiv) msgDiv.classList.remove('show'); }, 2500);
+    setTimeout(() => { orderStatus.innerHTML = ''; }, 3000);
+  }
 
-            if(!obj || obj.length == 0) {
-              showMessage("⚠️ 查無配對資料，請確認輸入是否正確");
-              orderStatus.innerHTML = "";
-              return;
-            }
+  function showHint(str) {
+    const inputStr = str.trim();
+    if (!inputStr) { showMessage('⚠️ 請輸入身分證＋驗證碼！'); return; }
+    
+    var btn = document.querySelector('.match-query .btn-gold');
+    btn.disabled = true;
+    var orderStatus = document.getElementById('order_status');
+    orderStatus.innerHTML = '<div class="spinner"></div>';
+    
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+      if (xmlhttp.readyState == 4) {
+        btn.disabled = false;
+        if (xmlhttp.status == 200) {
+          try { var obj = JSON.parse(xmlhttp.responseText); } 
+          catch(e) { showMessage('⚠️ 無法解析伺服器回應！'); orderStatus.innerHTML = ''; return; }
+          
+          if (!obj || obj.length == 0) { showMessage('⚠️ 查無配對資料，請確認輸入是否正確'); orderStatus.innerHTML = ''; return; }
+          
+          var bodyContent = "";
+          var guestName = "尊貴的賓客";
 
-            // 繪製古風視覺結果表格
-            var html = '<table>';
-            for (var i = 0; i < obj.length; i++) {
-              html += '<tr>';
-              for (var j = 0; j < obj[i].data.length; j++) {
-                html += '<td>' + obj[i].data[j] + '</td>';
+          // 判斷回傳資料：通常 obj[0] 是表單的「標題列」，obj[1] 才是「查詢到的配對資料」
+          if (obj.length > 1) {
+            var headers = obj[0].data;
+            var values = obj[1].data;
+            
+            // 嘗試將第一格資料（通常是學號或姓名）作為信件專屬抬頭
+            if (values[0]) guestName += " " + values[0];
+
+            bodyContent += `<p style="font-size:0.85rem; color:#8a6a1a; margin-bottom:1.5rem; text-align:center; flex-shrink:0;">致 ${guestName}</p>`;
+            bodyContent += `<table>`;
+            
+            // 將標題與配對資料一行一行對齊顯示
+            for (var j = 0; j < headers.length; j++) {
+              if (headers[j] && values[j]) { // 略過空白欄位
+                bodyContent += `<tr>
+                                  <td style="width:35%; color:#7a1515; font-weight:700; padding-right:12px; text-align:right; border-right:1px solid #c8b080; vertical-align:top;">${headers[j]}</td>
+                                  <td style="width:65%; padding-left:12px; color:#1a1105; font-weight:600; vertical-align:top;">${values[j]}</td>
+                                </tr>`;
               }
-              html += '</tr>';
             }
-            html += '</table>';
-            orderStatus.innerHTML = html;
-
+            bodyContent += `</table>`;
+            
           } else {
-            showMessage("⚠️ 查詢失敗，伺服器連線異常");
-            orderStatus.innerHTML = "";
+            // 如果 API 只回傳單一列資料（沒有標題列的情況）
+            var values = obj[0].data;
+            bodyContent += `<p style="font-size:0.85rem; color:#8a6a1a; margin-bottom:1.5rem; text-align:center; flex-shrink:0;">致 尊貴的賓客</p>`;
+            for (var k = 0; k < values.length; k++) {
+              bodyContent += `<p style="margin: 0.4rem 0; color:#1a1105; font-weight:600; text-align:center;">${values[k]}</p>`;
+            }
           }
-        }
-      };
 
-      // Google Apps Script API 網址
-      var url = "https://script.google.com/macros/s/AKfycbyI5y_QrkhPLf2Qvl_kkPi0eau_nhVUm3vp0tQdJ0iRdqxxpRiu9W0D5_AuOabjHRgJ/exec";
-      xmlhttp.open("GET", url + "?uid=" + encodeURIComponent(inputStr), true);
-      xmlhttp.send();
+          // 清空原有的載入動畫
+          orderStatus.innerHTML = '';
+
+          // 構建密信彈出視窗 HTML 【修改】把按鈕移到 letter-content 裡
+          var html = `
+            <div class="modal-overlay" id="letterModal">
+              <div class="letter-container" id="letterContainer">
+                <div class="envelope" id="envelopeBody">
+                  <div class="envelope-flap"></div>
+                  <div class="letter-content">
+                    <button class="modal-close-btn" onclick="closeModal()">×</button>
+                    <div class="letter-header">⚜️ 王冠之宴 密信 ⚜️</div>
+                    <div class="letter-body">
+                      ${bodyContent}
+                    </div>
+                    <div class="letter-footer">ANNO DOMINI MMXXVI</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          `;
+          
+          // 如果畫面中已經有舊的視窗，先移除
+          var oldModal = document.getElementById('letterModal');
+          if(oldModal) oldModal.remove();
+
+          // 將視窗插入到 body 的最尾端
+          document.body.insertAdjacentHTML('beforeend', html);
+
+          // 觸發視窗浮現與信件展開動畫
+          setTimeout(() => {
+            document.getElementById('letterModal').classList.add('active');
+            document.getElementById('letterContainer').classList.add('show');
+            setTimeout(() => {
+              document.getElementById('envelopeBody').classList.add('open');
+            }, 400);
+          }, 50);
+
+        } else { showMessage('⚠️ 查詢失敗，伺服器連線異常'); orderStatus.innerHTML = ''; }
+      }
+    };
+    
+    // 請確認下方的 Google Apps Script 網址是您專案中正確的 URL
+    var url = 'https://script.google.com/macros/s/AKfycbyI5y_QrkhPLf2Qvl_kkPi0eau_nhVUm3vp0tQdJ0iRdqxxpRiu9W0D5_AuOabjHRgJ/exec';
+    xmlhttp.open('GET', url + '?uid=' + encodeURIComponent(inputStr), true);
+    xmlhttp.send();
+  }
+
+  // ════ 關閉密信彈出視窗 ════
+  window.closeModal = function() {
+    const modal = document.getElementById('letterModal');
+    if (modal) {
+      // 先收合信件與容器
+      document.getElementById('envelopeBody').classList.remove('open');
+      document.getElementById('letterContainer').classList.remove('show');
+      modal.classList.remove('active');
+      
+      // 等待動畫結束後將 DOM 移除
+      setTimeout(() => {
+        modal.remove();
+      }, 600);
     }
+  };
+
+  // 點擊背景遮罩也能關閉視窗
+  document.addEventListener('click', function(e) {
+    if (e.target && e.target.id === 'letterModal') {
+      closeModal();
+    }
+  });
   </script>
 </body>
 </html>
