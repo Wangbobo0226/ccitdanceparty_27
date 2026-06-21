@@ -129,7 +129,7 @@
 
     /* ── 星空 canvas ── */
     #star-canvas {
-      position:fixed; inset:0; z-index:0; pointer-events:none;
+      position:absolute; inset:0; z-index:0; pointer-events:none;
       width:100%; height:100%;
     }
 
@@ -294,9 +294,6 @@
     .reg-note p { font-size:0.78rem; color:var(--parchment-dim); opacity:0.6; font-style:italic; line-height:2; }
     .dress-section { margin-top:2.5rem; }
     .dress-section p { font-size:0.87rem; color:var(--parchment-dim); line-height:2; margin-bottom:1rem; }
-    .dress-pills { display:flex; flex-wrap:wrap; gap:0.8rem; margin-top:1.2rem; }
-    .dress-pill { background:var(--gold-faint); border:1px solid var(--border); padding:0.45rem 1.1rem; font-family:'Cinzel',serif; font-size:0.62rem; letter-spacing:0.2em; color:var(--gold-dim); text-transform:uppercase; transition:all 0.3s; cursor:default; }
-    .dress-pill:hover { background:rgba(201,168,76,0.18); border-color:var(--gold-dim); color:var(--gold); transform:translateY(-2px); }
 
     /* ═══════════════════════════════
        PAGE: PERFORMERS
@@ -945,13 +942,13 @@
           <div class="orn-line"></div><div class="orn-diamond"></div><div class="orn-line r"></div>
         </div>
         <div class="match-grid">
-          <a href="#" class="card match-card reveal-left" onclick="event.preventDefault();alert('請替換為校內配對 Google 表單連結')">
+          <a href="https://forms.gle/FZ59K4qPPQVoc6mP7" target="_blank" rel="noopener" class="card match-card reveal-left">
             <div class="match-icon">🏰</div>
             <h3 class="match-title">校內配對</h3>
             <p class="match-desc">國防大學理工學院在校學生專屬，填寫配對表單尋覓你的舞會伴侶。</p>
             <span class="match-btn">前往填寫</span>
           </a>
-          <a href="#" class="card match-card reveal-right" onclick="event.preventDefault();alert('請替換為校外配對 Google 表單連結')">
+          <a href="https://forms.gle/FZ59K4qPPQVoc6mP7" target="_blank" rel="noopener" class="card match-card reveal-right">
             <div class="match-icon">⚜️</div>
             <h3 class="match-title">校外配對</h3>
             <p class="match-desc">校外貴賓專屬，跨越城牆尋覓命中注定的那一位。</p>
@@ -977,13 +974,13 @@
           <div class="orn-line"></div><div class="orn-diamond"></div><div class="orn-line r"></div>
         </div>
         <div class="reg-grid">
-          <a href="#" class="card reg-card reveal-left" onclick="event.preventDefault();alert('請替換為校外報名 Google 表單連結')">
+          <a href="https://forms.gle/MDbwRu9xeoE5F1u9A" target="_blank" rel="noopener" class="card reg-card reveal-left">
             <div class="reg-icon">🎭</div>
             <h3 class="reg-title">校外賓客報名</h3>
             <p class="reg-desc">校外人士自行報名（不參加配對），歡迎各方英雄豪傑蒞臨共襄盛舉。</p>
             <span class="reg-btn">前往報名</span>
           </a>
-          <a href="#" class="card reg-card reveal-right" onclick="event.preventDefault();alert('請替換為校友報名 Google 表單連結')">
+          <a href="https://forms.gle/CeDgRKNYychC1XWC9" target="_blank" rel="noopener" class="card reg-card reveal-right">
             <div class="reg-icon">🗡️</div>
             <h3 class="reg-title">校友報名</h3>
             <p class="reg-desc">歡迎歷屆校友返校，重溫舊日榮光，共赴這場中世紀盛宴。</p>
@@ -998,13 +995,6 @@
           <h3 style="font-family:'Cinzel',serif;font-size:1rem;letter-spacing:0.2em;color:var(--gold);margin-bottom:1.2rem">衣著建議</h3>
           <p>本屆舞會主題為中世紀宮廷風格，邀請所有賓客以華麗的宮廷服飾赴宴，一同沉浸在這場跨越時空的盛典之中。</p>
           <p>衣著可參考中世紀歐洲宮廷色彩——深紅、墨綠、皇家藍、金色等典雅配色，融入絨布、蕾絲、金屬配飾等元素。亦可選擇與主題相符的正式服裝參加。</p>
-          <div class="dress-pills">
-            <span class="dress-pill">👑 王室貴族</span>
-            <span class="dress-pill">⚔️ 騎士武士</span>
-            <span class="dress-pill">🌹 宮廷仕女</span>
-            <span class="dress-pill">🧙 宮廷術士</span>
-            <span class="dress-pill">🎪 宮廷藝人</span>
-          </div>
         </div>
       </div>
     </div>
@@ -1723,4 +1713,4 @@
   });
   </script>
 </body>
-</html>
+                    </html>
