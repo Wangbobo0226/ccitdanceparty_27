@@ -157,6 +157,8 @@
       .home-inner {
         justify-content: flex-start;
         padding-top: 5.5rem;
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
         padding-bottom: max(5rem, env(safe-area-inset-bottom, 2rem));
         min-height: auto;
       }
@@ -167,7 +169,8 @@
     .home-divider-line { height:1px; width:70px; background:linear-gradient(to right,transparent,var(--gold-dim)); }
     .home-divider-line.r { background:linear-gradient(to left,transparent,var(--gold-dim)); }
     .home-title {
-      font-family:'Cinzel Decorative',serif; font-size:clamp(3rem,6vw,5.5rem); font-weight:900;
+      font-family:'Cinzel Decorative',serif; font-size:clamp(1.6rem,calc((100vw - var(--sidebar-w)) / 13),4.2rem); font-weight:900;
+      white-space:nowrap;
       background:linear-gradient(135deg,var(--gold-dim) 0%,var(--gold-light) 40%,var(--gold) 65%,var(--gold-dim) 100%);
       -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
       line-height:1.05; margin-bottom:0.6rem; animation:fadeUp 0.9s ease 0.15s both;
@@ -190,6 +193,12 @@
       display:block; min-width:3rem;
     }
     .cd-unit { font-family:'Cinzel',serif; font-size:0.55rem; letter-spacing:0.3em; color:var(--gold-dim); text-transform:uppercase; margin-top:0.25rem; display:block; }
+
+    /* 首頁內容置中對齊 */
+    .home-inner { align-items:center; text-align:center; }
+    .home-divider, .home-meta, .home-cta, .countdown-blocks { justify-content:center; }
+    .home-cta { align-items:center; }
+    .home-meta-item { text-align:center; }
 
     /* buttons */
     .btn-gold {
@@ -245,6 +254,8 @@
     .vf-value { font-size:0.92rem; color:var(--parchment); line-height:1.8; }
     .venue-map-wrap { position:relative; height:100%; }
     .venue-map-wrap iframe { width:100%; height:100%; min-height:360px; border:1px solid var(--border); display:block; filter:grayscale(30%) sepia(25%); }
+    .map-open-btn { position:absolute; left:0.8rem; bottom:0.8rem; z-index:2; font-family:'Cinzel',serif; font-size:0.62rem; letter-spacing:0.2em; color:var(--ink); background:linear-gradient(135deg,var(--gold-dim),var(--gold-light)); padding:0.5rem 1rem; text-decoration:none; transition:opacity 0.3s; }
+    .map-open-btn:hover { opacity:0.85; }
     .transport-block { margin-top:1.5rem; padding:1.6rem; }
     .transport-title { font-family:'Cinzel',serif; font-size:0.62rem; letter-spacing:0.4em; color:var(--gold-dim); text-transform:uppercase; margin-bottom:1.2rem; }
     .transport-item { display:flex; gap:0.8rem; margin-bottom:1rem; font-size:0.83rem; color:var(--parchment-dim); line-height:1.7; }
@@ -623,7 +634,7 @@
     }
     @media(max-width:600px){
       .perf-grid{grid-template-columns:repeat(2,1fr);}
-      .home-title{font-size:2.4rem;}
+      .home-title{font-size:calc((100vw - 3rem) / 11);}
       .home-cta{flex-direction:column;}
       .countdown-blocks{gap:0.8rem;}
       .cd-num{font-size:1.5rem;}
@@ -928,7 +939,8 @@
             </div>
           </div>
           <div class="venue-map-wrap reveal-right">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3619.534550679993!2d121.26293507537159!3d24.87974177791675!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x346817fbe187cd9d%3A0x6cf07f1e9c49225a!2z5ZyL6Ziy5aSn5a2455CG5bel5a246Zmi!5e0!3m2!1szh-TW!2stw!4v1781188182712!5m2!1szh-TW!2stw" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <iframe src="https://maps.google.com/maps?q=%E5%9C%8B%E9%98%B2%E5%A4%A7%E5%AD%B8%E7%90%86%E5%B7%A5%E5%AD%B8%E9%99%A2%20%E6%A1%83%E5%9C%92%E5%B8%82%E5%A4%A7%E6%BA%AA%E5%8D%80%E7%9F%B3%E5%9C%92%E8%B7%AF75%E8%99%9F&hl=zh-TW&z=16&output=embed" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="國防大學理工學院地圖"></iframe>
+            <a class="map-open-btn" href="https://www.google.com/maps/search/?api=1&query=%E5%9C%8B%E9%98%B2%E5%A4%A7%E5%AD%B8%E7%90%86%E5%B7%A5%E5%AD%B8%E9%99%A2%20%E6%A1%83%E5%9C%92%E5%B8%82%E5%A4%A7%E6%BA%AA%E5%8D%80%E7%9F%B3%E5%9C%92%E8%B7%AF75%E8%99%9F" target="_blank" rel="noopener">在 Google 地圖開啟 ↗</a>
           </div>
         </div>
       </div>
